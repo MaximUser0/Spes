@@ -1,0 +1,26 @@
+@import "variables";
+@import "libs/normalize";
+@import "components";
+
+body {
+    background-color: var(--background);
+}
+
+p {
+    font-size: 18px;
+}
+
+input,
+textarea,
+button {
+    font-size: 20px;
+    border: none;
+    outline: none;
+}
+
+.root > div{
+    display: grid;
+    grid-template-columns: 25vw 1fr 15vw;
+    margin: 1.5vw 3vw;
+    gap: 1.5vw;
+}

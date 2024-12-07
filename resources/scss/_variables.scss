@@ -1,0 +1,28 @@
+:root {
+    --background: #ededed;
+    --light: #fbfbfb;
+    --font: #242424;
+    --light-font: #787878;
+    --gray: #d7e5e5;
+}
+
+@font-face {
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Mulish"),
+        url("../fonts/Mulish/Mulish-Regular.ttf") format("ttf");
+}
+@font-face {
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: 300;
+    src: local("Mulish"), url("../fonts/Mulish/Mulish-Light.ttf") format("ttf");
+}
+@font-face {
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: 500;
+    src: local("Mulish"), url("../fonts/Mulish/Mulish-Medium.ttf") format("ttf");
+}
+$Mulish: "Mulish", sans-serif;
