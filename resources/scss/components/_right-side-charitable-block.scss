@@ -1,0 +1,39 @@
+.RightSideCharitableBlock {
+    background-color: var(--light);
+    border-radius: 25px;
+    padding: 25px 25px;
+    margin-top: 1.4vw;
+    h2{
+        font-size: 18px;
+    }
+    hr {
+        display: block;
+        width: auto;
+        margin: 20px 0 25px 0;
+        border: none;
+        border-top: 1px solid #cacaca;
+    }
+    .list {
+        display: grid;
+        grid-template-rows: min-content;
+        gap: 10px;
+
+        & > div {
+            display: grid;
+            grid-template-columns: min-content 1fr;
+            padding: 5px 0 5px 5px;
+
+            img {
+                width: 32px;
+                height: 32px;
+            }
+            p {
+                text-align: left;
+                margin: auto 0 auto 16px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+}

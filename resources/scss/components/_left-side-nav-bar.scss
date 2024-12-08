@@ -1,0 +1,70 @@
+.LeftSideNavBar {
+    background-color: var(--light);
+    border-radius: 25px;
+    padding: 20px 15px 26px 15px;
+
+    & > div {
+        cursor: pointer;
+        padding: 17px 13px;
+        margin-bottom: 10px;
+        border-radius: 15px;
+        display: grid;
+        grid-template-columns: min-content 1fr;
+        color: var(--light-font);
+        & > div {
+            width: 30px;
+            height: 30px;
+            margin: auto 2px;
+            display: flex;
+            justify-content: center;
+            svg {
+                margin: auto;
+            }
+        }
+        p {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--light-font);
+            margin: auto 0 auto 10px;
+        }
+    }
+    hr {
+        display: block;
+        width: auto;
+        margin: 20px 15px 25px 15px;
+        border: none;
+        border-top: 1px solid #cacaca;
+    }
+    & > .active {
+        background-color: var(--gray);
+        p,
+        svg {
+            color: var(--font);
+        }
+    }
+    .social-networks {
+        padding: 12px 13px 11px 13px;
+        & > div {
+            width: 25px;
+            height: 25px;
+        }
+        p {
+            padding-top: 4px;
+            font-size: 18px;
+        }
+        margin-bottom: 5px;
+    }
+}
+.privacy-policy {
+    display: flex;
+    margin-top: 30px;
+    :first-child {
+        cursor: pointer;
+    }
+    p {
+        font-size: 16px;
+        color: var(--light-font);
+        margin-right: 30px;
+        margin-left: 3px;
+    }
+}

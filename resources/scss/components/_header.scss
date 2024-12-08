@@ -6,24 +6,27 @@ header {
 
     & > img {
         margin-top: 6px;
+        cursor: pointer;
     }
     & > div {
         width: 600px;
         height: 45px;
         background-color: #ededed;
         border-radius: 15px;
-        margin: auto;
+        margin: auto 0 auto calc(22.9vw - 133px);
         padding-right: 20px;
         display: grid;
         grid-template-columns: min-content 1fr;
 
         img {
             margin: auto 10px auto 16px;
+            cursor: pointer;
         }
         input {
             background-color: transparent;
             color: #535353;
             padding-top: 2px;
+            font-family: $Mulish;
         }
     }
     button {

@@ -18,9 +18,17 @@ button {
     outline: none;
 }
 
-.root > div{
+button {
+    cursor: pointer;
+}
+
+.root > div {
     display: grid;
-    grid-template-columns: 25vw 1fr 15vw;
-    margin: 1.5vw 3vw;
-    gap: 1.5vw;
+    grid-template-columns: 440px 1fr 303px;
+    margin: 1.4vw 2.4vw;
+    gap: 1.4vw;
+
+    @media (max-width: 1920px) {
+        grid-template-columns: 23vw 1fr 303px;
+    }
 }

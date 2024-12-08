@@ -1,0 +1,58 @@
+.RightSideForumBlock {
+    background-color: var(--light);
+    border-radius: 25px;
+    padding: 20px 25px;
+
+    .top {
+        display: grid;
+        grid-template-columns: 1fr min-content;
+    }
+    .find {
+        height: 38px;
+        width: 100%;
+        margin: 10px 0 20px 0;
+        background-color: #ededed;
+        border-radius: 15px;
+        display: grid;
+        grid-template-columns: min-content 1fr;
+
+        img {
+            width: 22px;
+            height: 22px;
+            margin: auto 10px auto 16px;
+            cursor: pointer;
+        }
+        input {
+            background-color: transparent;
+            color: #535353;
+            padding-top: 2px;
+            font-family: $Mulish;
+            font-size: 18px;
+        }
+    }
+    .list {
+        display: grid;
+        grid-template-rows: min-content;
+        gap: 10px;
+
+        & > div {
+            display: grid;
+            grid-template-columns: min-content 1fr;
+
+            img {
+                width: 50px;
+                height: 50px;
+                border-radius: 100%;
+                object-fit: cover;
+            }
+            p {
+                text-align: left;
+                margin: auto 0 auto 16px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-weight: 400;
+            }
+        }
+    }
+}
