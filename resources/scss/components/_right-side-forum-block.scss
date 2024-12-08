@@ -6,6 +6,10 @@
     .top {
         display: grid;
         grid-template-columns: 1fr min-content;
+        cursor: default;
+        img{
+            cursor: pointer;
+        }
     }
     .find {
         height: 38px;
@@ -38,6 +42,7 @@
         & > div {
             display: grid;
             grid-template-columns: min-content 1fr;
+            cursor: pointer;
 
             img {
                 width: 50px;

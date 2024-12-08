@@ -1,12 +1,13 @@
 import React from "react";
-import image from "../assets/img/forum-icon.svg";
+import image1 from "../assets/img/funds-image-1.svg";
+import image2 from "../assets/img/funds-image-2.svg";
 
 export default function RightSideCharitableBlock() {
     const funds = [
-        {src: image, name:"Название фонда"},
-        {src: image, name:"Название фонда"},
-        {src: image, name:"Название фонда"},
-        {src: image, name:"Название фонда"},
+        {src: image1, name:"Название фонда"},
+        {src: image2, name:"Название фонда"},
+        {src: image1, name:"Название фонда"},
+        {src: image2, name:"Название фонда"},
     ];
     return (
         <div className="RightSideCharitableBlock">
