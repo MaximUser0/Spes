@@ -1,0 +1,41 @@
+.LeftSideUserInfo {
+    background-color: var(--light);
+    border-radius: 25px;
+    padding: 12px 15px;
+    margin-bottom: 1.3vw;
+    & > div {
+        border-radius: 25px;
+        padding: 32px;
+        padding-bottom: 22px;
+        background-color: #f4f4f4;
+        .common {
+            display: flex;
+            gap: 10px;
+            & > img {
+                width: 50px;
+                height: 50px;
+                border-radius: 100%;
+                object-fit: cover;
+            }
+            & > div {
+                :first-child{
+                    font-size: 20px;
+                }
+                :last-child{
+                    color: #5d5d5d;
+                }
+            }
+        }
+        .statistics{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            text-align: center;
+            margin-top: 32px;
+            p{
+                font-size: 16px;
+                margin-top: 4px;
+            }
+        }
+    }
+}

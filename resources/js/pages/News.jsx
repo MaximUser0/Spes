@@ -1,7 +1,8 @@
-import React from 'react'
+import React from "react";
+import NewsBlock from "../components/NewsBlock";
 
 export default function News() {
-  return (
-    <div>News</div>
-  )
+    return (
+            <NewsBlock />
+    );
 }

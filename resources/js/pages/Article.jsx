@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function Article() {
-  return (
-    <div>Article</div>
-  )
+    return <div>Статья</div>;
 }

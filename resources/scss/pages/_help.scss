@@ -1,0 +1,43 @@
+.Help {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.3vw;
+    height: max-content;
+    & > div {
+        background-color: var(--light);
+        border-radius: 25px;
+        padding: 20px;
+        position: relative;
+        h2 {
+            font-size: 18px;
+            background-color: var(--gray);
+            padding: 5px 16px;
+            width: max-content;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        & > div {
+            margin-top: 30px;
+            display: flex;
+            img {
+                width: 16px;
+            }
+            p {
+                font-size: 13px;
+                color: #8c8c8c;
+                margin-left: 5px;
+            }
+        }
+        button {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            padding: 2px 22px 4px 22px;
+            border-radius: 10px;
+            background-color: var(--gray);
+            img {
+                height: 12px;
+            }
+        }
+    }
+}

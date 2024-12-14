@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function LeftSideNavBar() {
+    const page = (window.location.pathname).split('/',2)[1];
+
     const navigate = useNavigate();
     return (
         <>
@@ -10,7 +12,7 @@ export default function LeftSideNavBar() {
                     onClick={() => {
                         navigate("/");
                     }}
-                    className="active"
+                    className={page == "" ? "active" : ""}
                 >
                     <div>
                         <svg
@@ -33,8 +35,9 @@ export default function LeftSideNavBar() {
                 </div>
                 <div
                     onClick={() => {
-                        navigate("./news");
+                        navigate("../news");
                     }}
+                    className={page == "news" ? "active" : ""}
                 >
                     <div>
                         <svg
@@ -56,8 +59,9 @@ export default function LeftSideNavBar() {
                 </div>
                 <div
                     onClick={() => {
-                        navigate("./feedback");
+                        navigate("../feedback");
                     }}
+                    className={page == "feedback" ? "active" : ""}
                 >
                     <div>
                         <svg
@@ -79,8 +83,9 @@ export default function LeftSideNavBar() {
                 </div>
                 <div
                     onClick={() => {
-                        navigate("./map");
+                        navigate("../map");
                     }}
+                    className={page == "map" ? "active" : ""}
                 >
                     <div>
                         <svg
@@ -110,8 +115,9 @@ export default function LeftSideNavBar() {
                 </div>
                 <div
                     onClick={() => {
-                        navigate("./help");
+                        navigate("../help");
                     }}
+                    className={page == "help" ? "active" : ""}
                 >
                     <div>
                         <svg
@@ -134,8 +140,9 @@ export default function LeftSideNavBar() {
                 </div>
                 <div
                     onClick={() => {
-                        navigate("./articles");
+                        navigate("../articles");
                     }}
+                    className={page == "articles" ? "active" : ""}
                 >
                     <div>
                         <svg
@@ -157,8 +164,9 @@ export default function LeftSideNavBar() {
                 </div>
                 <div
                     onClick={() => {
-                        navigate("./forums");
+                        navigate("../forums");
                     }}
+                    className={page == "forums" ? "active" : ""}
                 >
                     <div>
                         <svg

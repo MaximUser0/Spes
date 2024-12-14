@@ -1,0 +1,127 @@
+.Feedback {
+    display: grid;
+    gap: 1.4vw;
+    grid-template-columns: 2.8fr 7.5fr;
+    height: max-content;
+    h2 {
+        font-size: 20px;
+        background-color: var(--gray);
+        padding: 5px 20px;
+        width: max-content;
+        border-radius: 10px;
+        min-width: 160px;
+        text-align: center;
+        margin-bottom: 32px;
+    }
+    .contacts {
+        p {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            margin-top: 15px;
+        }
+        .light {
+            font-size: 18px;
+            font-weight: 300;
+            margin: 0;
+        }
+    }
+    .form {
+        display: grid;
+        grid-template-columns: 10vw 1fr;
+        gap: 1vw;
+        & > div {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.4vw
+        }
+        input,
+        textarea {
+            background-color: var(--background);
+            border-radius: 10px;
+            padding: 8px 16px;
+            resize: none;
+        }
+        input {
+            width: 100%;
+        }
+    }
+    .checkbox {
+        display: grid;
+        grid-template-columns: max-content 10vw 1fr;
+        margin-top: 2.5vw;
+        input[type="checkbox"] {
+            //margin: 0;
+            cursor: pointer;
+            position: relative;
+            margin-right: 30px;
+        }
+
+        input[type="checkbox"]:before {
+            content: "";
+            display: block;
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            background-color: var(--light);
+        }
+        input[type="checkbox"]:checked:before {
+            background-color: var(--background);
+        }
+        input[type="checkbox"]:checked:after {
+            content: "";
+            display: block;
+            width: 9px;
+            height: 18px;
+            border: solid var(--font);
+            border-width: 0 2px 2px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+            position: absolute;
+            top: 6px;
+            left: 13px;
+        }
+        button {
+            width: min-content;
+            height: min-content;
+            background-color: var(--gray);
+            padding: 5px 20px 5px 18px;
+            border-radius: 10px;
+            margin: auto 0 0 auto;
+        }
+    }
+    & > div {
+        background-color: var(--light);
+        border-radius: 25px;
+        padding: 20px;
+    }
+    .article {
+        position: relative;
+        grid-column: 1 / 3;
+        h2 {
+            font-size: 18px;
+        }
+        & > div {
+            display: grid;
+            grid-template-columns: 1fr max-content;
+            gap: 2vw;
+            img{
+                margin-top: -50px;
+                margin-right: 32px;
+            }
+        }
+        button{
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            padding: 2px 22px 4px 22px;
+            border-radius: 10px;
+            img{
+                height: 12px;
+            }
+        }
+    }
+}
