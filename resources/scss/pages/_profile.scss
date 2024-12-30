@@ -1,0 +1,193 @@
+.Profile {
+    grid-column: 2 / 4;
+    background-color: var(--light);
+    border-radius: 25px;
+    height: 830px;
+    .grayBlock {
+        background-color: #e2e2e2;
+        width: 100%;
+        height: 198px;
+        border-radius: 25px 25px 0 0;
+    }
+    .content {
+        padding: 0 2vw 1vw 2vw;
+        .info {
+            display: grid;
+            grid-template-columns: min-content 1fr max-content;
+            img {
+                width: 7.8vw;
+                height: 7.8vw;
+                min-height: 130px;
+                min-width: 130px;
+                border-radius: 100%;
+                object-fit: cover;
+                margin-top: -2vw;
+                @media (max-width: 1600px) {
+                    margin-top: -30px;
+                }
+            }
+            & > div {
+                margin: 0.5vw 0 0 1vw;
+                h2 {
+                    font-size: 20px;
+                    font-weight: 400;
+                    margin-bottom: 3px;
+                }
+                p {
+                    font-size: 18px;
+                    color: #5d5d5d;
+                }
+            }
+            button {
+                background-color: #d7e5e5;
+                height: min-content;
+                padding: 6px 14px;
+                border-radius: 10px;
+                font-size: 18px;
+                margin: 1.3vw -0.5vw 0 1vw;
+            }
+        }
+        .menu {
+            margin-top: 3vw;
+            display: flex;
+            gap: 2vw;
+            border-bottom: 1px solid #cacaca;
+            p {
+                font-size: 20px;
+                color: #787878;
+                padding-bottom: 15px;
+                margin-bottom: -1px;
+                cursor: pointer;
+            }
+            .active {
+                color: var(--font);
+                border-bottom: 1px solid var(--font);
+            }
+        }
+        .UserInfo {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2vw;
+            margin-top: 2vw;
+
+            & > div {
+                border-right: 1px solid #cacaca;
+            }
+            h2 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+            p {
+                font-size: 18px;
+                color: #787878;
+                margin-bottom: 10px;
+            }
+            :last-child {
+                border-right: none;
+            }
+        }
+        .ForumBlock,
+        .FriendsBlock,
+        .SubscribersBlock,
+        .SubscriptionsBlock {
+            height: 385px;
+            overflow: auto;
+            & > div {
+                display: grid;
+                grid-template-columns: min-content 1fr max-content;
+                gap: 30px;
+                padding: 1.3vw 0;
+                border-bottom: 1px solid #cacaca;
+                position: relative;
+
+                .image {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 100%;
+                    object-fit: cover;
+                    margin: auto 0;
+                }
+                .menuImage {
+                    padding: 12px 0;
+                    margin: auto 0;
+                    width: 24px;
+                    cursor: pointer;
+                }
+                h2 {
+                    font-size: 20px;
+                    margin-bottom: 3px;
+                }
+                p {
+                    color: #787878;
+                    cursor: pointer;
+                    img {
+                        margin-right: 5px;
+                        margin-bottom: -2px;
+                        height: 19px;
+                    }
+                }
+                .menuPopup {
+                    position: absolute;
+                    top: 70px;
+                    right: 8px;
+                    padding: 10px 10px 5px 10px;
+                    min-width: 250px;
+                    display: flex;
+                    flex-direction: column;
+                    border-radius: 23px;
+                    background-color: var(--light);
+                    box-shadow: 0 0 8px var(--font);
+                    z-index: 2;
+                    div:first-child {
+                        background-color: var(--gray);
+                    }
+                    :last-child {
+                        img {
+                            margin-right: 2px;
+                        }
+                    }
+                    & > div {
+                        cursor: pointer;
+                        display: flex;
+                        justify-content: left;
+                        gap: 5px;
+                        padding: 10px;
+                        border-radius: 15px;
+                        img {
+                            height: 25px;
+                        }
+                    }
+                    p {
+                        color: var(--font);
+                    }
+                }
+            }
+        }
+    }
+}
+.ProfileChatVersion {
+    .grayBlock {
+        display: none;
+    }
+    .content {
+        padding: 0;
+        .info {
+            display: none;
+        }
+        .menu {
+            margin: 1.5vw 2vw 0 2vw;
+        }
+    }
+    .Forum {
+        padding: 0 2vw;
+        .find {
+            border-top: none;
+        }
+        .title {
+            border-top: none;
+        }
+    }
+}
+.slim {
+    grid-column: 2 / 3;
+}

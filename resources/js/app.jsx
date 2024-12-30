@@ -34,6 +34,9 @@ import AdminUsers from "./pages/Admin/AdminUsers";
 import FundsAndSharesBlock from "./components/FundsAndSharesBlock.jsx";
 import CreateFundBlock from "./components/CreateFundBlock.jsx";
 import ChatsBlock from "./components/ChatsBlock.jsx";
+import CommunitiesBlock from "./components/CommunitiesBlock.jsx";
+import FriendsBlock from "./components/FriendsBlock.jsx";
+import ProfileMenuSideBlock from "./components/ProfileMenuSideBlock.jsx";
 
 export default function App() {
     const [sidePanels, setSidePanels] = React.useState([0, 1, 3, 4]);
@@ -48,9 +51,8 @@ export default function App() {
                 setSidePanels([0, 1, 5, 6]);
                 break;
             case "map":
-                setSidePanels([0, 1]);
-                break;
             case "forum":
+            case "profile":
                 setSidePanels([0, 1]);
                 break;
             default:
@@ -84,7 +86,10 @@ export default function App() {
                     <Route path="/articles/:id" element={<Article />} />
                     <Route path="/forums" element={<Forums />} />
                     <Route path="/forum/:id" element={<Forum />} />
-                    <Route path="/profile" element={<Profile />} />
+                    <Route
+                        path="/profile"
+                        element={<Profile setPanels={setSidePanels} />}
+                    />
                     <Route
                         path="/profile/:name"
                         element={<ProfileOfAnother />}
@@ -119,9 +124,16 @@ export default function App() {
                 <div>
                     {sidePanels.indexOf(2) != -1 ? <RightSideForumBlock /> : ""}
                     {sidePanels.indexOf(3) != -1 ? <ChatsBlock /> : ""}
-                    {sidePanels.indexOf(4) != -1 ? <RightSideCharitableBlock /> : ""}
+                    {sidePanels.indexOf(4) != -1 ? (
+                        <RightSideCharitableBlock />
+                    ) : (
+                        ""
+                    )}
                     {sidePanels.indexOf(5) != -1 ? <CreateFundBlock /> : ""}
                     {sidePanels.indexOf(6) != -1 ? <FundsAndSharesBlock /> : ""}
+                    {sidePanels.indexOf(9) != -1 ? <ProfileMenuSideBlock /> : ""}
+                    {sidePanels.indexOf(7) != -1 ? <CommunitiesBlock /> : ""}
+                    {sidePanels.indexOf(8) != -1 ? <FriendsBlock /> : ""}
                 </div>
             </div>
         </div>

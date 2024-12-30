@@ -7,11 +7,14 @@ import { Provider } from "react-redux";
 <Provider store={store}></Provider>*/
 
 import "./bootstrap";
+import ProfileProvider from "./context/ProfileProvider";
 
 ReactDOM.createRoot(document.getElementById("app")).render(
     <BrowserRouter>
         <React.StrictMode>
-            <App />
+            <ProfileProvider>
+                <App />
+            </ProfileProvider>
         </React.StrictMode>
     </BrowserRouter>
 );
