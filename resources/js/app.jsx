@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 //import { useDispatch } from "react-redux";
 
 import Header from "./components/Header";
@@ -33,40 +33,55 @@ import AdminArticlesAdd from "./pages/Admin/AdminArticles/Add";
 import AdminUsers from "./pages/Admin/AdminUsers";
 import FundsAndSharesBlock from "./components/FundsAndSharesBlock.jsx";
 import CreateFundBlock from "./components/CreateFundBlock.jsx";
-
-//import getUser from "./components/UserInfo";
+import ChatsBlock from "./components/ChatsBlock.jsx";
 
 export default function App() {
-    const [sidePanels, setSidePanels] = React.useState([1, 1, 1, 1, 0, 0]);
-    const page = window.location.pathname.split("/", 2)[1];
-    /*const dispatch = useDispatch();getUser(dispatch);*/
+    const [sidePanels, setSidePanels] = React.useState([0, 1, 3, 4]);
+    const location = useLocation();
+
     React.useEffect(() => {
-        if (page == "help") {
-            setSidePanels([1, 1, 0, 0, 1, 1]);
-        } else {
-            setSidePanels([1, 1, 1, 1, 0, 0]);
+        switch (location.pathname.split("/", 2)[1]) {
+            case "":
+                setSidePanels([0, 1, 2, 4]);
+                break;
+            case "help":
+                setSidePanels([0, 1, 5, 6]);
+                break;
+            case "map":
+                setSidePanels([0, 1]);
+                break;
+            case "forum":
+                setSidePanels([0, 1]);
+                break;
+            default:
+                setSidePanels([0, 1, 3, 4]);
+                break;
         }
-    }, []);
+    }, [location.pathname]);
     return (
         <div className="root">
             <Header />
             <div>
                 <div>
-                    {sidePanels[0] ? <LeftSideUserInfo /> : ""}
-                    {sidePanels[1] ? <LeftSideNavBar /> : ""}
+                    {sidePanels.indexOf(0) != -1 ? <LeftSideUserInfo /> : ""}
+                    {sidePanels.indexOf(1) != -1 ? <LeftSideNavBar /> : ""}
                 </div>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/news" element={<News />} />
                     <Route path="/news/:id" element={<CertainNews />} />
                     <Route path="/feedback" element={<Feedback />} />
-                    <Route path="/map" element={<Map />} />
+                    <Route
+                        path="/map"
+                        element={<Map />}
+                        onEnter={() => setSidePanels([1, 1, 0, 0, 1, 1])}
+                    />
                     <Route
                         path="/help"
                         element={<Help setSidePanels={setSidePanels} />}
                     />
                     <Route path="/articles" element={<Articles />} />
-                    <Route path="/article/:id" element={<Article />} />
+                    <Route path="/articles/:id" element={<Article />} />
                     <Route path="/forums" element={<Forums />} />
                     <Route path="/forum/:id" element={<Forum />} />
                     <Route path="/profile" element={<Profile />} />
@@ -102,10 +117,11 @@ export default function App() {
                     <Route path="/admin-panel/users" element={<AdminUsers />} />
                 </Routes>
                 <div>
-                    {sidePanels[2] ? <RightSideForumBlock /> : ""}
-                    {sidePanels[3] ? <RightSideCharitableBlock /> : ""}
-                    {sidePanels[4] ? <CreateFundBlock /> : ""}
-                    {sidePanels[5] ? <FundsAndSharesBlock /> : ""}
+                    {sidePanels.indexOf(2) != -1 ? <RightSideForumBlock /> : ""}
+                    {sidePanels.indexOf(3) != -1 ? <ChatsBlock /> : ""}
+                    {sidePanels.indexOf(4) != -1 ? <RightSideCharitableBlock /> : ""}
+                    {sidePanels.indexOf(5) != -1 ? <CreateFundBlock /> : ""}
+                    {sidePanels.indexOf(6) != -1 ? <FundsAndSharesBlock /> : ""}
                 </div>
             </div>
         </div>

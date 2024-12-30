@@ -1,12 +1,9 @@
 import React from "react";
 import example from "../assets/img/example-image.jpg";
-import date_icon from "../assets/img/date-icon.svg";
-import comment_icon from "../assets/img/reaction-count-icon.svg";
-import arrow from "../assets/img/arrow-back.svg";
-import { Link } from "react-router-dom";
+import CertainNewsBlock from "../components/CertainNewsBlock";
 
 export default function CertainNews() {
-    const id = window.location.pathname.split("/")[2];
+    //const id = window.location.pathname.split("/")[2];
     const news = {
         title: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
         text: "В современном мире идет активное развитие технологий и роботизации производств, однако уровень травматизма сохраняется. Каждый десятый человек имеет нарушение структур организма, снижающие его функциональность, что в свою очередь отражается на уровне физической и социальной активности человека, снижает качество жизни и становится препятствием при реализации профессиональной деятельности. Но инвалидность - это не приговор. Жизнь одинаково прекрасна для всех живущих на Земле. Многие из нас этого не замечают и не умеют ценить, при любом пустяковом препятствии впадают в депрессию.Сегодня мы беседуем с очень красивой девушкой по имени Лариса. Сейчас она живет в столице, переехав недавно с Ростовской областиВ 1996 году девушка получила серьезную травму ноги в дорожно-транспортном происшествии. К сожалению, травма у нее была очень сложная/, и ради спасения жизни, врачи пошли на радикальные меры, провели ампутацию ноги.Казалось бы, в 16 лет оказаться на костылях, сложно не попасть в депрессию или нежелательную зависимость от алкоголя.Однако Лариса не замкнулась, закончила успешно школу, потом институт, вышла замуж, стала востребованной моделью. Сейчас Лариса активно ведет странички в социальных сетях, где помогает разными советами и информацией многим людям, попавшим в аналогичную ситуацию.",
@@ -31,44 +28,6 @@ export default function CertainNews() {
         ],
     };
     return (
-        <div className="CertainNews">
-            <img alt="Изображение" src={news.image} />
-            <Link to="../news"><button className="back"><img alt="Назад" src={arrow} /></button></Link>
-            <div className="title">
-                <h1>{news.title}</h1>
-                <div>
-                    <img alt="Дата" src={date_icon} />
-                    <p>{news.date}</p>
-                    <img alt="Коментарии" src={comment_icon} />
-                    <p>{news.comment_counter}</p>
-                </div>
-            </div>
-            <p>{news.text}</p>
-            <h2>Коментарии</h2>
-            <div className="addComment">
-                <img alt="Ваше фото" src={example} />
-                <textarea
-                    type="text"
-                    placeholder="Оставьте свой коментарий"
-                ></textarea>
-            </div>
-            <hr />
-            {news.comments.map((comment, index) => (
-                <div key={"comment-for-news-" + index} className="comment">
-                    <div>
-                        <img alt="Фото пользователя" src={comment.image} />
-                        <div>
-                            <p>Name Surname</p>
-                            <p>
-                                <img alt="Дата" src={date_icon} />
-                                {comment.date}
-                            </p>
-                        </div>
-                    </div>
-                    <p>{comment.text}</p>
-                    <hr />
-                </div>
-            ))}
-        </div>
+        <CertainNewsBlock array={news} type={"news"}/>
     );
 }

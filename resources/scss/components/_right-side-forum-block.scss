@@ -1,4 +1,6 @@
-.RightSideForumBlock {
+.RightSideForumBlock,
+.FundsAndSharesBlock,
+.ChatsBlock {
     background-color: var(--light);
     border-radius: 25px;
     padding: 20px 25px;
@@ -7,7 +9,7 @@
         display: grid;
         grid-template-columns: 1fr min-content;
         cursor: default;
-        img{
+        img {
             cursor: pointer;
         }
     }
