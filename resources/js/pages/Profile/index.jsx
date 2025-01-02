@@ -7,10 +7,12 @@ import ChatsBlock from "./ChatsBlock";
 import FriendsBlock from "./FriendsBlock";
 import SubscribersBlock from "./SubscribersBlock";
 import SubscriptionsBlock from "./SubscriptionsBlock";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile({ setPanels }) {
     const user = { name: "Name Surname", user_name: "@dokspo", src: example };
     const { selectedMenu, setSelectedMenu } = React.useContext(ProfileContext);
+    const navigate = useNavigate();
     const menuList = [
         "Профиль",
         "Форум",
@@ -20,7 +22,7 @@ export default function Profile({ setPanels }) {
         "Мои подписки",
     ];
     const blocks = [
-        <UserInfo />,
+        <UserInfo isReadOnly={true} />,
         <ForumBlock />,
         <ChatsBlock />,
         <FriendsBlock />,
@@ -63,7 +65,13 @@ export default function Profile({ setPanels }) {
                         <h2>{user.name}</h2>
                         <p>{user.user_name}</p>
                     </div>
-                    <button>Редактировать профиль</button>
+                    <button
+                        onClick={() => {
+                            navigate("./edit");
+                        }}
+                    >
+                        Редактировать профиль
+                    </button>
                 </div>
                 <div className="menu">
                     {menuList.map((value, index) => (

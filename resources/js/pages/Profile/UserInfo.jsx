@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function UserInfo() {
+export default function UserInfo({ isReadOnly }) {
     const info = {
         name: "Name",
         surname: "Surname",
@@ -15,36 +15,55 @@ export default function UserInfo() {
     return (
         <div className="UserInfo">
             <div>
-                <h2>Имя</h2>
-                <p>{info.name}</p>
-                <h2>Фамилия</h2>
-                <p>{info.surname}</p>
-                <h2>Возраст</h2>
-                <p>
-                    {info.age +
+                <h2>Общие данные</h2>
+                <p>Имя</p>
+                <input defaultValue={info.name} readOnly={isReadOnly} />
+                <p>Фамилия</p>
+                <input defaultValue={info.surname} readOnly={isReadOnly} />
+                <p>Возраст</p>
+                <input
+                    defaultValue={
+                        info.age +
                         " " +
                         (info.age % 10 == 1
                             ? info.age == 11
                                 ? "лет"
                                 : "год"
-                            : "лет")}
-                </p>
+                            : "лет")
+                    }
+                    type={isReadOnly ? "text" : "date"}
+                    readOnly={isReadOnly}
+                />
             </div>
             <div>
-                <h2>Цель знакомства</h2>
-                <p>{info.purpose_of_dating}</p>
-                <h2>Интересы и увлечения</h2>
-                <p>{info.hobbies}</p>
-                <h2>О себе</h2>
-                <p>{info.about}</p>
+                <h2>Личная информация</h2>
+                <p>Цель знакомства</p>
+                <input
+                    defaultValue={info.purpose_of_dating}
+                    readOnly={isReadOnly}
+                />
+                <p>Интересы и увлечения</p>
+                <input defaultValue={info.hobbies} readOnly={isReadOnly} />
+                <p>О себе</p>
+                <input defaultValue={info.about} readOnly={isReadOnly} />
             </div>
             <div>
-                <h2>E-mail</h2>
-                <p>{info.email}</p>
-                <h2>Номер телефона</h2>
-                <p>{info.number_phone}</p>
-                <h2>Город</h2>
-                <p>{info.city}</p>
+                <h2>Контакты</h2>
+                <p>E-mail</p>
+                <input defaultValue={info.email} readOnly={isReadOnly} />
+                <p>Номер телефона</p>
+                <input defaultValue={info.number_phone} readOnly={isReadOnly} />
+                <p>Город</p>
+                {isReadOnly ? (
+                    <h2>{info.city}</h2>
+                ) : (
+                    <select defaultValue={info.city}>
+                        <option value="Астрахань">Астрахань</option>
+                        <option value="Москва">Москва</option>
+                        <option value="Самара">Самара</option>
+                        <option value="Волгоград">Волгоград</option>
+                    </select>
+                )}
             </div>
         </div>
     );

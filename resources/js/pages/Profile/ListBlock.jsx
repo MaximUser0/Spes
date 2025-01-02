@@ -2,6 +2,7 @@ import React from "react";
 import chat_icon from "../../assets/img/chat-icon.svg";
 import menu_icon from "../../assets/img/menu-icon.svg";
 import profile_icon from "../../assets/img/profile-icon.svg";
+import { Link } from "react-router-dom";
 
 export default function ListBlock({ array, type, texts, image}) {
     const [selectedMenuPopup, setSelectedMenuPopup] = React.useState(-1);
@@ -9,7 +10,7 @@ export default function ListBlock({ array, type, texts, image}) {
         <>
             {array.map((elem, index) => (
                 <div key={"profile-" + type + "-block-element-" + index}>
-                    <img alt="Фотография" src={elem.src} className="image" />
+                    <Link to={type != "forums" ? "./" + elem.id : ""}><img alt="Фотография" src={elem.src} className="image"/></Link>
                     <div>
                         <h2>{elem.name}</h2>
                         <p>

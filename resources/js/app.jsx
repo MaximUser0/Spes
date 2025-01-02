@@ -37,6 +37,7 @@ import ChatsBlock from "./components/ChatsBlock.jsx";
 import CommunitiesBlock from "./components/CommunitiesBlock.jsx";
 import FriendsBlock from "./components/FriendsBlock.jsx";
 import ProfileMenuSideBlock from "./components/ProfileMenuSideBlock.jsx";
+import EditProfile from "./pages/Profile/EditProfile.jsx";
 
 export default function App() {
     const [sidePanels, setSidePanels] = React.useState([0, 1, 3, 4]);
@@ -53,6 +54,7 @@ export default function App() {
             case "map":
             case "forum":
             case "profile":
+            case "admin-panel":
                 setSidePanels([0, 1]);
                 break;
             default:
@@ -91,7 +93,11 @@ export default function App() {
                         element={<Profile setPanels={setSidePanels} />}
                     />
                     <Route
-                        path="/profile/:name"
+                        path="/profile/edit"
+                        element={<EditProfile />}
+                    />
+                    <Route
+                        path="/profile/:id"
                         element={<ProfileOfAnother />}
                     />
                     <Route path="/sing-up" element={<SingUp />} />
@@ -99,7 +105,7 @@ export default function App() {
                     <Route path="/admin-panel" element={<AdminPanel />} />
                     <Route path="/admin-panel/news" element={<AdminNews />} />
                     <Route
-                        path="/admin-panel/news/edit"
+                        path="/admin-panel/news/edit/:id"
                         element={<AdminNewsEdit />}
                     />
                     <Route
@@ -112,7 +118,7 @@ export default function App() {
                         element={<AdminArticles />}
                     />
                     <Route
-                        path="/admin-panel/articles/edit"
+                        path="/admin-panel/articles/edit/:id"
                         element={<AdminArticlesEdit />}
                     />
                     <Route

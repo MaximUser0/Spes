@@ -69,18 +69,23 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 2vw;
             margin-top: 2vw;
-
-            & > div {
-                border-right: 1px solid #cacaca;
-            }
-            h2 {
+            h2,
+            input,
+            select {
                 font-size: 20px;
-                margin-bottom: 15px;
+                margin-bottom: 10px;
+                border: none;
             }
             p {
                 font-size: 18px;
                 color: #787878;
                 margin-bottom: 10px;
+            }
+            & > div {
+                border-right: 1px solid #cacaca;
+                :first-child {
+                    margin-bottom: 15px;
+                }
             }
             :last-child {
                 border-right: none;
@@ -190,4 +195,18 @@
 }
 .slim {
     grid-column: 2 / 3;
+}
+.EditProfile {
+    .content .menu {
+        border-bottom: none;
+    }
+    .UserInfo {
+        input,
+        select {
+            margin-top: -1px;
+            padding-bottom: 1px;
+            width: 13vw;
+            border-bottom: 1px solid #787878!important;
+        }
+    }
 }
