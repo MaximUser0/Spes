@@ -18,24 +18,38 @@
                 object-fit: cover;
             }
             & > div {
-                :first-child{
+                :first-child {
                     font-size: 20px;
                 }
-                :last-child{
+                :last-child {
                     color: #5d5d5d;
                 }
             }
         }
-        .statistics{
+        .statistics {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             text-align: center;
             margin-top: 32px;
-            p{
+            p {
                 font-size: 16px;
                 margin-top: 4px;
             }
+        }
+    }
+    @media (max-width: 1600px) {
+        & > div .common > div {
+            :first-child {
+                font-size: 18px;
+            }
+            :last-child {
+                font-size: 16px;
+            }
+        }
+
+        .statistics p {
+            font-size: 14px !important;
         }
     }
 }

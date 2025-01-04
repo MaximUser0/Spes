@@ -1,7 +1,6 @@
-import React from 'react'
+import React from "react";
+import AddTemplate from "../AddTemplate";
 
 export default function Add() {
-  return (
-    <div>Add</div>
-  )
+    return <AddTemplate type="news" title="Новости"/>;
 }

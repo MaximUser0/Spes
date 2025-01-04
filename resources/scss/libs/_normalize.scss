@@ -40,6 +40,10 @@ h2 {
     line-height: normal;
     font-size: 20px;
     font-family: $Mulish;
+    
+    @media (max-width: 1600px) {
+        font-size: 18px;
+    }
 }
 
 a {

@@ -57,7 +57,8 @@
     }
 }
 
-.EditTemplateAdmin {
+.EditTemplateAdmin,
+.AddTemplateAdmin {
     grid-column: 2 / 4;
     h2 {
         margin-top: 0;
@@ -82,29 +83,124 @@
             div {
                 background-color: var(--background);
                 border-radius: 25px;
+                height: 100%;
             }
         }
         .title-div {
             background-color: var(--light);
             border-radius: 25px 25px 0 0;
+            display: grid;
+            grid-template-columns: 1fr max-content;
             h2 {
                 margin: 1vw 1.5vw;
+            }
+            button {
+                padding: 0.7vw 1.3vw;
+                margin-bottom: 0;
             }
         }
     }
     .CertainNews {
         border-radius: 25px 0 25px 25px;
         padding: 1.5vw;
+        padding-top: 0.8vw;
         padding-right: calc(303px + 2.8vw);
         h2 {
             margin: 1.2vw 0 1vw 0;
         }
         textarea {
-            width: 100%;
             border: 1px solid #787878;
             border-radius: 15px;
             padding: 10px 15px;
             resize: vertical;
+        }
+        .title {
+            width: 65%;
+            min-height: 4vw;
+        }
+        .text {
+            width: 100%;
+            min-height: 15vw;
+        }
+        .comment {
+            position: relative;
+            .menu {
+                align-self: center;
+                border-radius: 0;
+                height: auto;
+                width: auto;
+                object-fit: contain;
+                margin: 0 0 0 auto;
+                padding: 10px 0;
+                cursor: pointer;
+            }
+            .menuPopup {
+                position: absolute;
+                top: 0;
+                left: calc(100% + 20px);
+                padding: 10px;
+                min-width: 250px;
+                display: flex;
+                flex-direction: column;
+                border-radius: 23px;
+                background-color: var(--light);
+                box-shadow: 0 0 8px var(--font);
+                z-index: 2;
+                & > div {
+                    background-color: var(--gray);
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: left;
+                    gap: 5px;
+                    padding: 10px;
+                    border-radius: 15px;
+                    margin: 0;
+                    img {
+                        width: 25px;
+                    }
+                }
+                p {
+                    color: var(--font);
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}
+.AddTemplateAdmin {
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    .content {
+        position: relative;
+        background-color: var(--light);
+        border-radius: 25px 0 25px 25px;
+        padding: 1vw 1.5vw 2vw 1.5vw;
+        padding-bottom: 2vw;
+        width: 100%;
+        min-height: 30vw;
+        h2{
+            margin: 1.5vw 0 1.2vw 0;
+        }
+        textarea {
+            border: 1px solid #787878;
+            border-radius: 15px;
+            padding: 10px 15px;
+            resize: vertical;
+            min-width: 25vw;
+            min-height: 3vw;
+        }
+    }
+    .image {
+        align-content: center;
+        width: 13.3vw;
+        height: 11.6vw;
+        background-color: #cdcdcd;
+        border-radius: 25px;
+        cursor: pointer;
+        img {
+            display: block;
+            margin: auto;
+            padding: 0 0 0.5vw 0.5vw;
         }
     }
 }

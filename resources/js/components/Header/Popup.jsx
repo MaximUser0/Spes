@@ -1,6 +1,7 @@
 import React from "react";
 import profile_icon from "../../assets/img/profile-icon.svg";
 import logout_icon from "../../assets/img/logout-icon.svg";
+import { Link } from "react-router-dom";
 
 export default function Popup() {
     return (
@@ -10,8 +11,9 @@ export default function Popup() {
                 <p>Профиль</p>
             </div>
             <div>
+                
                 <img alt="Выйти" src={logout_icon} />
-                <p>Выйти</p>
+                <Link to="../sing-up"><p>Выйти</p></Link>
             </div>
         </div>
     );

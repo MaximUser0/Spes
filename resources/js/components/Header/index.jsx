@@ -4,6 +4,7 @@ import magnifier from "../../assets/img/magnifier.svg";
 import user_image from "../../assets/img/example-image.jpg";
 import arrow from "../../assets/img/arrow-menu.svg";
 import bell from "../../assets/img/bell-icon.svg";
+import mobile_menu from "../../assets/img/mobile-menu.svg";
 import { useNavigate } from "react-router-dom";
 import RequestPopup from "./RequestPopup";
 import Popup from "./Popup";
@@ -58,6 +59,7 @@ export default function Header() {
             ) : (
                 <button>Регистрация</button>
             )}
+            <img alt="Меню" className="mobile-menu" src={mobile_menu}/>
         </header>
     );
 }

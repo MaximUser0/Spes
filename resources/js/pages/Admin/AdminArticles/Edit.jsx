@@ -26,5 +26,5 @@ export default function Edit() {
             },
         ],
     };
-    return <EditTemplate array={array} type="articles" />;
+    return <EditTemplate array={array} type="articles" title="Статьи" />;
 }

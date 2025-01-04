@@ -7,6 +7,10 @@ header {
     & > img {
         margin-top: 6px;
         cursor: pointer;
+        @media (max-width: 1600px) {
+            height: 3.5vw;
+            min-height: 50px;
+        }
     }
     .find {
         width: 600px;
@@ -68,7 +72,7 @@ header {
             background-color: var(--light);
             box-shadow: 0 0 8px var(--font);
             z-index: 1;
-            & > p{
+            & > p {
                 margin-left: 6px;
                 font-size: 20px;
             }
@@ -82,13 +86,13 @@ header {
                     object-fit: cover;
                     margin: 0 10px;
                 }
-                div{
-                    p{
+                div {
+                    p {
                         font-size: 16px;
                         color: var(--light-font);
                         margin-top: 5px;
                     }
-                    img{
+                    img {
                         margin-bottom: -4px;
                         margin-right: 2px;
                     }
@@ -135,5 +139,28 @@ header {
         background-color: var(--gray);
         border-radius: 15px;
         color: var(--font);
+    }
+    .mobile-menu {
+        display: none;
+    }
+    @media (max-width: 1080px) {
+        .find,
+        .userInfo,
+        & > button {
+            display: none;
+        }
+        .mobile-menu {
+            display: block;
+            margin: 3px 0 0 auto;
+        }
+    }
+    @media (max-width: 550px) {
+        padding: 10px 30px;
+        & > img {
+            min-height: 40px;
+        }
+        .mobile-menu {
+            width: 36px;
+        }
     }
 }

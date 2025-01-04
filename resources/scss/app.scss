@@ -31,4 +31,18 @@ button {
     @media (max-width: 1920px) {
         grid-template-columns: 23vw 1fr 303px;
     }
+    @media (max-width: 1600px) {
+        grid-template-columns: 300px 1fr 275px;
+    }
+    @media (max-width: 1080px) {
+        display: block;
+        .rightSide,
+        .leftSide {
+            display: none;
+        }
+        margin: 15px 30px;
+    }
+    @media (max-width: 430px) {
+        margin: 10px 10px;
+    }
 }

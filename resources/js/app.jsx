@@ -57,6 +57,12 @@ export default function App() {
             case "admin-panel":
                 setSidePanels([0, 1]);
                 break;
+            case "login":
+                setSidePanels([1, 2, 4]);
+                break;
+            case "sing-up":
+                setSidePanels([1, 3, 4]);
+                break;
             default:
                 setSidePanels([0, 1, 3, 4]);
                 break;
@@ -66,7 +72,7 @@ export default function App() {
         <div className="root">
             <Header />
             <div>
-                <div>
+                <div className="leftSide">
                     {sidePanels.indexOf(0) != -1 ? <LeftSideUserInfo /> : ""}
                     {sidePanels.indexOf(1) != -1 ? <LeftSideNavBar /> : ""}
                 </div>
@@ -92,14 +98,8 @@ export default function App() {
                         path="/profile"
                         element={<Profile setPanels={setSidePanels} />}
                     />
-                    <Route
-                        path="/profile/edit"
-                        element={<EditProfile />}
-                    />
-                    <Route
-                        path="/profile/:id"
-                        element={<ProfileOfAnother />}
-                    />
+                    <Route path="/profile/edit" element={<EditProfile />} />
+                    <Route path="/profile/:id" element={<ProfileOfAnother />} />
                     <Route path="/sing-up" element={<SingUp />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/admin-panel" element={<AdminPanel />} />
@@ -127,7 +127,7 @@ export default function App() {
                     />
                     <Route path="/admin-panel/users" element={<AdminUsers />} />
                 </Routes>
-                <div>
+                <div className="rightSide">
                     {sidePanels.indexOf(2) != -1 ? <RightSideForumBlock /> : ""}
                     {sidePanels.indexOf(3) != -1 ? <ChatsBlock /> : ""}
                     {sidePanels.indexOf(4) != -1 ? (
@@ -137,7 +137,11 @@ export default function App() {
                     )}
                     {sidePanels.indexOf(5) != -1 ? <CreateFundBlock /> : ""}
                     {sidePanels.indexOf(6) != -1 ? <FundsAndSharesBlock /> : ""}
-                    {sidePanels.indexOf(9) != -1 ? <ProfileMenuSideBlock /> : ""}
+                    {sidePanels.indexOf(9) != -1 ? (
+                        <ProfileMenuSideBlock />
+                    ) : (
+                        ""
+                    )}
                     {sidePanels.indexOf(7) != -1 ? <CommunitiesBlock /> : ""}
                     {sidePanels.indexOf(8) != -1 ? <FriendsBlock /> : ""}
                 </div>

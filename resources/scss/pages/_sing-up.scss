@@ -1,0 +1,114 @@
+.SingUp,
+.Login {
+    background-color: var(--light);
+    border-radius: 25px;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    height: max-content;
+    .form {
+        padding: 5vw 4.5vw 5vw 4.5vw;
+        input {
+            width: 100%;
+            border: 1px solid var(--font);
+            border-radius: 15px;
+            margin: 0.8vw 0;
+            padding: 8px 15px;
+            font-size: 20px;
+        }
+    }
+    .right {
+        background-color: var(--gray);
+        border-radius: 0 25px 25px 0;
+        padding: 5vw 3vw 5vw 3vw;
+        display: flex;
+        & > div {
+            margin: auto;
+            align-self: center;
+        }
+        button {
+            margin: auto;
+            display: block;
+            border: 1px solid var(--font);
+            width: 9.5vw;
+            height: 2.1vw;
+            border-radius: 15px;
+            background-color: var(--gray);
+            margin-top: 2vw;
+        }
+    }
+    h1,
+    h2 {
+        font-size: 26px;
+        text-align: center;
+        font-weight: 400;
+        margin-bottom: 1.5vw;
+    }
+    p {
+        text-align: center;
+        font-size: 16px;
+    }
+    .checkbox {
+        display: grid;
+        grid-template-columns: max-content 10vw 1fr;
+        margin-top: 2.5vw;
+        input[type="checkbox"] {
+            //margin: 0;
+            cursor: pointer;
+            position: relative;
+            margin-right: 35px;
+            margin-top: 3px;
+        }
+
+        input[type="checkbox"]:before {
+            content: "";
+            display: block;
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            background-color: var(--light);
+        }
+        input[type="checkbox"]:checked:before {
+            background-color: var(--background);
+        }
+        input[type="checkbox"]:checked:after {
+            content: "";
+            display: block;
+            width: 9px;
+            height: 18px;
+            border: solid var(--font);
+            border-width: 0 2px 2px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+            position: absolute;
+            top: 6px;
+            left: 13px;
+        }
+        a {
+            margin: auto 0 0 auto;
+        }
+        button {
+            width: min-content;
+            height: min-content;
+            background-color: var(--gray);
+            padding: 9px 36px;
+            border-radius: 10px;
+
+            font-size: 18px;
+        }
+        label {
+            font-size: 16px;
+        }
+    }
+}
+.Login {
+    grid-template-columns: 2fr 3fr;
+    .form {
+        padding-top: 10vw;
+        padding-bottom: 10vw;
+    }
+    .right {
+        border-radius: 25px 0 0 25px;
+    }
+}
