@@ -1,9 +1,12 @@
 import React from "react";
 import magnifier from "../assets/img/magnifier.svg";
 import example from "../assets/img/example-image.jpg";
-import smile from "../assets/img/smile-icon.svg";
+import sent from "../assets/img/sent.svg";
+import attach from "../assets/img/attach.svg";
+import arrow from "../assets/img/arrow-follow.svg";
 
 export default function Forum() {
+    const [openMobileChat, setOpenMobileChat] = React.useState(false);
     const forums = [
         {
             id: 1,
@@ -41,7 +44,7 @@ export default function Forum() {
         { id: 1, text: "Cообщение", time: "14:30", is_owner: false },
     ];
     return (
-        <div className="Forum">
+        <div className={"Forum" + (openMobileChat ? " openMobileChat" : "")}>
             <div className="find">
                 <div>
                     <img src={magnifier} alt="Найти" />
@@ -49,15 +52,27 @@ export default function Forum() {
                 </div>
             </div>
             <div className="title">
+                <button
+                    onClick={() => {
+                        setOpenMobileChat(false);
+                    }}
+                >
+                    <img src={arrow} alt="Назад" />
+                </button>
                 <img alt="Фото сообщества" src={example} />
                 <h2>Название сообщества</h2>
             </div>
             <div className="list">
                 <div>
                     {forums.map((value, index) => (
-                        <div key={"forum-in-list-" + index}>
+                        <div
+                            key={"forum-in-list-" + index}
+                            onClick={() => {
+                                setOpenMobileChat(true);
+                            }}
+                        >
                             <img alt="Фото сообщества" src={value.src} />
-                            <div>
+                            <div className="text">
                                 <h3>{value.title}</h3>
                                 <p className="last">{value.last_message}</p>
                             </div>
@@ -87,8 +102,9 @@ export default function Forum() {
                 </div>
             </div>
             <div className="input">
-                <img alt="Smile" src={smile} />
+                <img alt="Прикрепить" src={attach} />
                 <input type="text" placeholder="Сообщение" name="message" />
+                <img alt="Послать" src={sent} />
             </div>
         </div>
     );

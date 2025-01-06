@@ -1,21 +1,82 @@
 import React from "react";
 import date_icon from "../assets/img/date-icon.svg";
 import arrow from "../assets/img/arrow-follow.svg";
+import CreateFundBlock from "../components/CreateFundBlock";
 
 export default function Help() {
     const funds = [
-        { id: 1, title: "На лечение", date: "19.09.24", owner: "Казанцева Наталья" },
-        { id: 1, title: "Приобретение жилья", date: "19.09.24", owner: "Смирнов Алексей" },
-        { id: 1, title: "Погашение долгов", date: "19.09.24", owner: "Морозов Александр" },
-        { id: 1, title: "Приобретение жилья", date: "19.09.24", owner: "Ильина Анна 32 года" },
-        { id: 1, title: "На лечение", date: "19.09.24", owner: "Радионов Михаил" },
-        { id: 1, title: "Погашение долгов", date: "19.09.24", owner: "Куприянова Анастасия" },
-        { id: 1, title: "Погашение долгов", date: "19.09.24", owner: "Калугин Денис" },
-        { id: 1, title: "Приобретение жилья", date: "19.09.24", owner: "Романов Олег" },
-        { id: 1, title: "На лечение", date: "19.09.24", owner: "Алексеев Андрей" },
-        { id: 1, title: "Приобретение жилья", date: "19.09.24", owner: "Соколова Ангелина" },
-        { id: 1, title: "На лечение", date: "19.09.24", owner: "Дронова Евгения" },
-        { id: 1, title: "Погашение долгов", date: "19.09.24", owner: "Морозов Владимир" },
+        {
+            id: 1,
+            title: "На лечение",
+            date: "19.09.24",
+            owner: "Казанцева Наталья",
+        },
+        {
+            id: 1,
+            title: "Приобретение жилья",
+            date: "19.09.24",
+            owner: "Смирнов Алексей",
+        },
+        {
+            id: 1,
+            title: "Погашение долгов",
+            date: "19.09.24",
+            owner: "Морозов Александр",
+        },
+        {
+            id: 1,
+            title: "Приобретение жилья",
+            date: "19.09.24",
+            owner: "Ильина Анна 32 года",
+        },
+        {
+            id: 1,
+            title: "На лечение",
+            date: "19.09.24",
+            owner: "Радионов Михаил",
+        },
+        {
+            id: 1,
+            title: "Погашение долгов",
+            date: "19.09.24",
+            owner: "Куприянова Анастасия",
+        },
+        {
+            id: 1,
+            title: "Погашение долгов",
+            date: "19.09.24",
+            owner: "Калугин Денис",
+        },
+        {
+            id: 1,
+            title: "Приобретение жилья",
+            date: "19.09.24",
+            owner: "Романов Олег",
+        },
+        {
+            id: 1,
+            title: "На лечение",
+            date: "19.09.24",
+            owner: "Алексеев Андрей",
+        },
+        {
+            id: 1,
+            title: "Приобретение жилья",
+            date: "19.09.24",
+            owner: "Соколова Ангелина",
+        },
+        {
+            id: 1,
+            title: "На лечение",
+            date: "19.09.24",
+            owner: "Дронова Евгения",
+        },
+        {
+            id: 1,
+            title: "Погашение долгов",
+            date: "19.09.24",
+            owner: "Морозов Владимир",
+        },
     ];
     return (
         <div className="Help">
@@ -32,6 +93,7 @@ export default function Help() {
                     </button>
                 </div>
             ))}
+            <CreateFundBlock isMobile={true} />
         </div>
     );
 }

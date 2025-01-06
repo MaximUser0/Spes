@@ -42,7 +42,20 @@ button {
         }
         margin: 15px 30px;
     }
+    @media (max-width: 550px) {
+        p {
+            font-size: 13px;
+        }
+    }
     @media (max-width: 430px) {
         margin: 10px 10px;
+    }
+}
+.mobile-only {
+    display: none;
+}
+@media (max-width: 1080px) {
+    .mobile-only {
+        display: block;
     }
 }

@@ -1,8 +1,24 @@
-.Help, .Forums {
+.Help,
+.Forums {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.3vw;
     height: max-content;
+    @media (max-width: 1550px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 1250px) {
+        grid-template-columns: 1fr;
+    }
+    @media (max-width: 1080px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 890px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
     & > div {
         background-color: var(--light);
         border-radius: 25px;
@@ -41,6 +57,27 @@
             img {
                 height: 12px;
             }
+        }
+    }
+    @media (max-width: 550px) {
+        gap: 8px;
+        & > div h2 {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        & > div > div {
+            margin-top: 20px;
+            p {
+                font-size: 11px;
+            }
+        }
+    }
+    .CreateFundBlock {
+        button {
+            position: static;
+        }
+        img {
+            height: 220px;
         }
     }
 }

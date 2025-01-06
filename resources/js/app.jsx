@@ -74,7 +74,11 @@ export default function App() {
             <div>
                 <div className="leftSide">
                     {sidePanels.indexOf(0) != -1 ? <LeftSideUserInfo /> : ""}
-                    {sidePanels.indexOf(1) != -1 ? <LeftSideNavBar /> : ""}
+                    {sidePanels.indexOf(1) != -1 ? (
+                        <LeftSideNavBar isMobile={false} />
+                    ) : (
+                        ""
+                    )}
                 </div>
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -135,7 +139,11 @@ export default function App() {
                     ) : (
                         ""
                     )}
-                    {sidePanels.indexOf(5) != -1 ? <CreateFundBlock /> : ""}
+                    {sidePanels.indexOf(5) != -1 ? (
+                        <CreateFundBlock isMobile={false} />
+                    ) : (
+                        ""
+                    )}
                     {sidePanels.indexOf(6) != -1 ? <FundsAndSharesBlock /> : ""}
                     {sidePanels.indexOf(9) != -1 ? (
                         <ProfileMenuSideBlock />

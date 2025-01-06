@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
+    const navigate = useNavigate();
     return (
         <div className="Login">
             <div className="right">
@@ -23,10 +24,17 @@ export default function Login() {
                 <div className="checkbox">
                     <input type="checkbox" />
                     <label>Согласие на обработку персональных данных</label>
-                    <Link to="../profile">
-                        <button>Войти</button>
-                    </Link>
+                    <button
+                        onClick={() => {
+                            navigate("../profile");
+                        }}
+                    >
+                        Войти
+                    </button>
                 </div>
+                <p className="already">
+                    Нет аккаунта? <Link to="../sing-up">Регистрация</Link>
+                </p>
             </div>
         </div>
     );

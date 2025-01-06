@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SingUp() {
+    const navigate = useNavigate();
     return (
         <div className="SingUp">
             <div className="form">
@@ -14,8 +15,17 @@ export default function SingUp() {
                 <div className="checkbox">
                     <input type="checkbox" />
                     <label>Согласие на обработку персональных данных</label>
-                    <Link to="../profile"><button>Регистрация</button></Link>
+                    <button
+                        onClick={() => {
+                            navigate("../profile");
+                        }}
+                    >
+                        Регистрация
+                    </button>
                 </div>
+                <p className="already">
+                    Уже есть аккаунт? <Link to="../login">Войти</Link>
+                </p>
             </div>
             <div className="right">
                 <div>
@@ -24,7 +34,9 @@ export default function SingUp() {
                         Чтобы оставаться на связи с нами, пожалуйста, войдите в
                         систему, указав свои личные данные
                     </p>
-                    <Link to="../login"><button>Войти</button></Link>
+                    <Link to="../login">
+                        <button>Войти</button>
+                    </Link>
                 </div>
             </div>
         </div>

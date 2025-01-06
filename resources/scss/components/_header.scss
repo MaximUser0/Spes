@@ -143,6 +143,14 @@ header {
     .mobile-menu {
         display: none;
     }
+    .mobile-nav-bar {
+        display: none;
+    }
+    @media (max-width: 1200px) {
+        .find {
+            margin-left: 3vw;
+        }
+    }
     @media (max-width: 1080px) {
         .find,
         .userInfo,
@@ -152,15 +160,57 @@ header {
         .mobile-menu {
             display: block;
             margin: 3px 0 0 auto;
+            z-index: 3;
+        }
+        .mobile-nav-bar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: auto;
+            z-index: 2;
+            box-shadow: 0 0 8px var(--font);
+            border-radius: 15px 0 15px 15px;
+            background-color: var(--light);
+            padding-top: 45px;
+            .LeftSideNavBar {
+                padding: 10px 10px 5px 10px;
+                & > div {
+                    padding: 3px;
+                    margin-bottom: 8px;
+                    p {
+                        font-size: 14px;
+                        margin-left: 0;
+                    }
+                    & > div {
+                        height: 30px;
+                        width: 30px;
+                    }
+                    svg, img {
+                        height: 20px;
+                        width: 20px;
+                    }
+                }
+                hr {
+                    margin: 10px 0 12px 0;
+                }
+            }
+            .privacy-policy {
+                display: none;
+            }
+        }
+        .show {
+            display: block;
         }
     }
+
     @media (max-width: 550px) {
         padding: 10px 30px;
         & > img {
-            min-height: 40px;
+            min-height: 32px;
         }
         .mobile-menu {
-            width: 36px;
+            width: 24px;
         }
     }
 }

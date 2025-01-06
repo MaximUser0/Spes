@@ -4,15 +4,17 @@ import menu_icon from "../../assets/img/menu-icon.svg";
 import profile_icon from "../../assets/img/profile-icon.svg";
 import { Link } from "react-router-dom";
 
-export default function ListBlock({ array, type, texts, image}) {
+export default function ListBlock({ array, type, texts, image }) {
     const [selectedMenuPopup, setSelectedMenuPopup] = React.useState(-1);
     return (
         <>
             {array.map((elem, index) => (
                 <div key={"profile-" + type + "-block-element-" + index}>
-                    <Link to={type != "forums" ? "./" + elem.id : ""}><img alt="Фотография" src={elem.src} className="image"/></Link>
+                    <img alt="Фотография" src={elem.src} className="image" />
                     <div>
-                        <h2>{elem.name}</h2>
+                        <Link to={type != "forums" ? "./" + elem.id : ""}>
+                            <h2>{elem.name}</h2>
+                        </Link>
                         <p>
                             <img alt="Чат" src={chat_icon} />
                             {texts[2]}

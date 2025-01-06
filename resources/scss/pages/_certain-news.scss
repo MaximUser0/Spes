@@ -8,17 +8,18 @@
     & > img {
         width: 100%;
         height: 12vw;
+        min-height: 200px;
         border-radius: 25px;
         object-fit: cover;
     }
-    .back{
+    .back {
         position: absolute;
         top: 40px;
         left: 40px;
         padding: 3px 15px;
         border-radius: 10px;
         background-color: var(--gray);
-        img{
+        img {
             width: 23px;
         }
     }
@@ -71,10 +72,14 @@
         textarea {
             border-radius: 15px;
             border: 1px solid var(--light-font);
-            width: 22.1vw;
-            height: 4.5vw;
+            width: 425px;
+            height: 87px;
+            max-width: 30vw;
             padding: 8px 12px 8px 12px;
             resize: none;
+            @media (max-width: 1080px) {
+                max-width: 100%;
+            }
         }
     }
     .comment {
@@ -87,15 +92,15 @@
                 border-radius: 25px;
                 object-fit: cover;
             }
-            & > div{
-                :first-child{
+            & > div {
+                :first-child {
                     font-size: 20px;
                 }
-                :last-child{
+                :last-child {
                     font-size: 13px;
                     color: #8c8c8c;
                     margin-top: 5px;
-                    img{
+                    img {
                         width: 16px;
                         margin: 0 5px -3px 0;
                     }
@@ -107,6 +112,46 @@
             padding: 16px;
             background-color: #eeeeee;
             border-radius: 25px;
+        }
+    }
+    @media (max-width: 550px) {
+        h1,
+        h2,
+        textarea {
+            font-size: 14px !important;
+        }
+        h2 {
+            margin-bottom: 10px;
+        }
+        .title div {
+            display: none;
+        }
+        .addComment {
+            & > img {
+                width: 30px;
+                height: 30px;
+            }
+            textarea {
+                height: 60px;
+            }
+        }
+        .comment {
+            & > div {
+                & > img {
+                    width: 30px;
+                    height: 30px;
+                }
+                & > div :last-child img {
+                    width: 12px;
+                }
+                & > div :first-child {
+                    font-size: 14px;
+                }
+            }
+            & > p {
+                padding: 8px;
+                border-radius: 12px;
+            }
         }
     }
 }

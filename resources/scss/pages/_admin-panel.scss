@@ -99,12 +99,50 @@
                 margin-bottom: 0;
             }
         }
+        @media (max-width: 900px) {
+            .title-div {
+                h2 {
+                    margin: 20px 25px;
+                }
+                button {
+                    margin: 15px 15px;
+                }
+            }
+        }
+        @media (max-width: 550px) {
+            .title-div {
+                border-radius: 10px 10px 0 0;
+                h2 {
+                    font-size: 14px;
+                    margin: auto 12px;
+                }
+                button {
+                    font-size: 14px;
+                    margin: 7px 7px;
+                    border-radius: 5px;
+                }
+            }
+            .button-div {
+                border-radius: 10px 10px 0 10px;
+                & > div {
+                    border-radius: 10px;
+                    button {
+                        height: 25px;
+                        margin: 10px;
+                        img {
+                            width: 15px;
+                            margin: 5px 0;
+                        }
+                    }
+                }
+            }
+        }
     }
     .CertainNews {
         border-radius: 25px 0 25px 25px;
         padding: 1.5vw;
         padding-top: 0.8vw;
-        padding-right: calc(303px + 2.8vw);
+        padding-right: calc(100% - 970px - 1.5vw);
         h2 {
             margin: 1.2vw 0 1vw 0;
         }
@@ -165,6 +203,42 @@
                 }
             }
         }
+        @media (max-width: 1400px) {
+            padding: 10px 20px;
+        }
+        @media (max-width: 900px) {
+            h2 {
+                margin: 24px 0 20px 0;
+            }
+            .title {
+                width: 100%;
+            }
+            .text {
+                min-height: 150px;
+            }
+        }
+        @media (max-width: 550px) {
+            .comment {
+                .menu {
+                    width: 15px;
+                }
+                .menuPopup {
+                    min-width: 150px;
+                    top: 35px;
+                    right: 0;
+                    left: auto;
+                    padding: 6px;
+                    border-radius: 12px;
+                    & > div {
+                        padding: 5px 5px 8px 5px;
+                        border-radius: 10px;
+                    }
+                    p {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
     }
 }
 .AddTemplateAdmin {
@@ -178,7 +252,7 @@
         padding-bottom: 2vw;
         width: 100%;
         min-height: 30vw;
-        h2{
+        h2 {
             margin: 1.5vw 0 1.2vw 0;
         }
         textarea {
@@ -201,6 +275,47 @@
             display: block;
             margin: auto;
             padding: 0 0 0.5vw 0.5vw;
+        }
+    }
+    @media (max-width: 1080px) {
+        .content {
+            padding: 25px 20px 25px 20px;
+            h2 {
+                margin: 20px 0 15px 0;
+            }
+            textarea {
+                min-width: 400px;
+                min-height: 150px;
+                width: 400px;
+                height: 150px;
+                max-width: 90vw;
+            }
+        }
+        .image {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+        }
+    }
+    @media (max-width: 550px) {
+        .content {
+            padding-top: 0;
+            h2 {
+                font-size: 14px;
+            }
+            textarea {
+                font-size: 13px;
+                width: 100%;
+                min-width: 100%;
+            }
+        }
+        .image {
+            width: 150px;
+            height: 150px;
+            border-radius: 15px;
+            img{
+                width: 50px;
+            }
         }
     }
 }

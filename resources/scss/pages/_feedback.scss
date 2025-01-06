@@ -3,6 +3,12 @@
     gap: 1.4vw;
     grid-template-columns: 2.8fr 7.5fr;
     height: max-content;
+    @media (max-width: 1300px) {
+        display: block;
+        & > div {
+            margin-bottom: 20px;
+        }
+    }
     h2 {
         font-size: 20px;
         background-color: var(--gray);
@@ -30,11 +36,14 @@
         display: grid;
         grid-template-columns: 10vw 1fr;
         gap: 1vw;
+        @media (max-width: 1080px) {
+            grid-template-columns: 1fr 2fr;
+        }
         & > div {
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 1.4vw
+            gap: 1.4vw;
         }
         input,
         textarea {
@@ -49,7 +58,7 @@
     }
     .checkbox {
         display: grid;
-        grid-template-columns: max-content 10vw 1fr;
+        grid-template-columns: max-content 200px 1fr;
         margin-top: 2.5vw;
         input[type="checkbox"] {
             //margin: 0;
@@ -104,24 +113,84 @@
         h2 {
             font-size: 18px;
         }
+        p {
+            margin-bottom: 20px;
+        }
         & > div {
             display: grid;
             grid-template-columns: 1fr max-content;
             gap: 2vw;
-            img{
+            img {
                 margin-top: -50px;
                 margin-right: 32px;
+                max-width: 20vw;
+                @media (max-width: 1500px) {
+                    margin: auto 0;
+                }
             }
         }
-        button{
+        button {
             position: absolute;
             right: 20px;
             bottom: 20px;
             padding: 2px 22px 4px 22px;
             border-radius: 10px;
-            img{
+            img {
                 height: 12px;
             }
+        }
+    }
+    @media (max-width: 550px) {
+        .article h2,
+        h2 {
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .contacts {
+            .light {
+                font-size: 13px;
+            }
+            p {
+                font-size: 14px;
+            }
+        }
+        .form {
+            display: block;
+            input,
+            textarea {
+                font-size: 13px;
+                margin-bottom: 8px;
+            }
+            textarea {
+                margin-top: 4px;
+                width: 100%;
+            }
+        }
+        .checkbox {
+            grid-template-columns: max-content 125px 1fr;
+            input[type="checkbox"] {
+                margin-right: 23px;
+            }
+            input[type="checkbox"]:before {
+                width: 26px;
+                height: 26px;
+            }
+            input[type="checkbox"]:checked:after {
+                width: 7px;
+                height: 14px;
+                top: 4px;
+                left: 11px;
+            }
+            label {
+                font-size: 11px;
+            }
+            button {
+                font-size: 14px;
+                padding: 4px 7px;
+            }
+        }
+        .article {
+            display: none;
         }
     }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { ProfileContext } from "../../context/ProfileContext";
 import example from "../../assets/img/example-image.jpg";
+import arrow_down from "../../assets/img/arrow-down.svg";
 import UserInfo from "./UserInfo";
 import ForumBlock from "./ForumBlock";
 import ChatsBlock from "./ChatsBlock";
@@ -12,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 export default function Profile({ setPanels }) {
     const user = { name: "Name Surname", user_name: "@dokspo", src: example };
     const { selectedMenu, setSelectedMenu } = React.useContext(ProfileContext);
+    const [showMobileMenu, setShowMobileMenu] = React.useState(false);
     const navigate = useNavigate();
     const menuList = [
         "Профиль",
@@ -67,11 +69,47 @@ export default function Profile({ setPanels }) {
                     </div>
                     <button
                         onClick={() => {
-                            navigate("./edit");
+                            navigate("../profile/edit");
                         }}
                     >
                         Редактировать профиль
                     </button>
+                    <button
+                        onClick={() => {
+                            setShowMobileMenu(!showMobileMenu);
+                        }}
+                        className="mobile-menu-button"
+                    >
+                        <img alt="Меню" src={arrow_down} />
+                    </button>
+                    {showMobileMenu ? (
+                        <div className="mobile-menu">
+                            <p
+                                onClick={() => {
+                                    setShowMobileMenu(false);
+                                    navigate("../profile/edit");
+                                }}
+                            >
+                                Редактировать профиль
+                            </p>
+                            {menuList.map((value, index) => (
+                                <p
+                                    key={"profile-menu-element-" + index}
+                                    className={
+                                        selectedMenu == index ? "active" : ""
+                                    }
+                                    onClick={() => {
+                                        setShowMobileMenu(false);
+                                        setSelectedMenu(index);
+                                    }}
+                                >
+                                    {value}
+                                </p>
+                            ))}
+                        </div>
+                    ) : (
+                        ""
+                    )}
                 </div>
                 <div className="menu">
                     {menuList.map((value, index) => (

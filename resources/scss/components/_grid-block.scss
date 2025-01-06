@@ -34,6 +34,35 @@
             font-size: 18px;
         }
     }
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        & > div {
+            padding: 15px 15px 35px 15px;
+            button {
+                right: 15px;
+                bottom: 15px;
+            }
+        }
+    }
+    @media (max-width: 550px) {
+        gap: 10px;
+        & > div {
+            h2 {
+                font-size: 14px;
+            }
+            button {
+                min-width: 35px;
+                display: flex;
+                padding: 6px;
+                border-radius: 10px;
+                img {
+                    height: 10px;
+                    margin: auto;
+                }
+            }
+        }
+    }
 }
 .AdminNews {
     grid-column: 2/4;
@@ -42,5 +71,12 @@
         border-radius: 10px;
         background-color: var(--gray);
         margin-top: 1.3vw;
+    }
+    @media (max-width: 550px) {
+        & > a > button {
+            font-size: 14px;
+            padding: 8px 15px;
+            margin-top: 10px;
+        }
     }
 }

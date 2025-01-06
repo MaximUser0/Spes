@@ -1,10 +1,12 @@
 import React from "react";
 import { ProfileContext } from "../context/ProfileContext";
+import arrow_down from "../assets/img/arrow-down.svg";
 import example from "../assets/img/example-image.jpg";
 import { useNavigate } from "react-router-dom";
 
 export default function ProfileOfAnother() {
     const { selectedMenu, setSelectedMenu } = React.useContext(ProfileContext);
+    const [showMenu, setShowMenu] = React.useState(false);
     const navigate = useNavigate();
     const info = {
         name: "Name",
@@ -41,6 +43,28 @@ export default function ProfileOfAnother() {
                         <p>{info.user_name}</p>
                     </div>
                     <button>Подписаться</button>
+                    <button
+                        onClick={() => {
+                            setShowMenu(!showMenu);
+                        }}
+                        className="mobile-menu-button"
+                    >
+                        <img alt="Меню" src={arrow_down} />
+                    </button>
+                    {showMenu ? (
+                        <div className="mobile-menu">
+                            <p
+                                onClick={() => {
+                                    navigate("../profile");
+                                }}
+                                className="active"
+                            >
+                                Вернуться в профиль
+                            </p>
+                        </div>
+                    ) : (
+                        ""
+                    )}
                 </div>
                 <div className="menu">
                     {menuList.map((value, index) => (

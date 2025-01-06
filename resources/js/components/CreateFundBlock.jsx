@@ -1,10 +1,16 @@
 import React from "react";
 import example from "../assets/img/example-image.jpg";
 
-export default function CreateFundBlock() {
-    const [hasFund, setHasFund] = React.useState(false);
+export default function CreateFundBlock({ isMobile }) {
+    const [hasFund, setHasFund] = React.useState(true);
     return (
-        <div className={"CreateFundBlock " + (hasFund ? "HasFund" : "")}>
+        <div
+            className={
+                "CreateFundBlock " +
+                (hasFund ? "HasFund" : "") +
+                (isMobile ? " mobile-only" : "")
+            }
+        >
             <h2>Мой фонд</h2>
             <input type="text" placeholder="Имя Фамилия" />
             <select defaultValue="" required>
@@ -25,7 +31,14 @@ export default function CreateFundBlock() {
             </p>
             <input id="add-image-for-new-fund" type="file" accept="image/*" />
             <img alt="Фотография моего фонда" src={example} />
-            {hasFund ? <><p>Соколова Ангелина </p><p>Приобретение жилья</p></> : ""}
+            {hasFund ? (
+                <>
+                    <p>Соколова Ангелина </p>
+                    <p>Приобретение жилья</p>
+                </>
+            ) : (
+                ""
+            )}
             <button
                 onClick={() => {
                     setHasFund(!hasFund);

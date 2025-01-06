@@ -46,6 +46,9 @@
         border-radius: 10px;
         margin-bottom: 25px;
         cursor: pointer;
+        @media (max-width: 1080px) {
+            margin-bottom: 42px;
+        }
     }
     #add-image-for-new-fund {
         display: none;
@@ -57,28 +60,39 @@
         border-radius: 25px;
         object-fit: cover;
     }
+    @media (max-width: 550px) {
+        input,
+        select {
+            font-size: 13px;
+        }
+        button {
+            font-size: 14px !important;
+        }
+    }
 }
 .HasFund {
-    h2{
+    h2 {
         font-size: 22px;
         background-color: var(--light);
         margin: 0 auto;
         padding: 0;
         margin-bottom: 20px;
     }
-    select, input, .fileInput{
+    select,
+    input,
+    .fileInput {
         display: none;
     }
     img {
         display: block;
         margin-bottom: 20px;
     }
-    p{
+    p {
         background-color: var(--light);
         margin: 12px auto;
         padding: 0;
     }
-    button{
+    button {
         margin: 20px auto 0 auto;
     }
 }

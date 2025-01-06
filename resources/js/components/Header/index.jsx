@@ -8,9 +8,11 @@ import mobile_menu from "../../assets/img/mobile-menu.svg";
 import { useNavigate } from "react-router-dom";
 import RequestPopup from "./RequestPopup";
 import Popup from "./Popup";
+import LeftSideNavBar from "../LeftSideNavBar";
 
 export default function Header() {
     const [popup, setPopup] = React.useState(0);
+    const [mobileMenu, setMobileMenu] = React.useState(false);
     const isUser = true;
     const navigate = useNavigate();
     return (
@@ -33,7 +35,7 @@ export default function Header() {
                         className="bell"
                         src={bell}
                         onClick={() => {
-                            setPopup(popup==1?0:1);
+                            setPopup(popup == 1 ? 0 : 1);
                         }}
                     />
                     <img
@@ -43,7 +45,7 @@ export default function Header() {
                     />
                     <p
                         onClick={() => {
-                            setPopup(popup==2?0:2);
+                            setPopup(popup == 2 ? 0 : 2);
                         }}
                     >
                         Name Surname
@@ -59,7 +61,17 @@ export default function Header() {
             ) : (
                 <button>Регистрация</button>
             )}
-            <img alt="Меню" className="mobile-menu" src={mobile_menu}/>
+            <img
+                alt="Меню"
+                className="mobile-menu"
+                src={mobile_menu}
+                onClick={() => {
+                    setMobileMenu(!mobileMenu);
+                }}
+            />
+            <div className={"mobile-nav-bar" + (mobileMenu ? " show" : "")}>
+                <LeftSideNavBar isMobile={true} setMobileMenu={setMobileMenu}/>
+            </div>
         </header>
     );
 }
