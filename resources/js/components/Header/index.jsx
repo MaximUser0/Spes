@@ -9,12 +9,19 @@ import { useNavigate } from "react-router-dom";
 import RequestPopup from "./RequestPopup";
 import Popup from "./Popup";
 import LeftSideNavBar from "../LeftSideNavBar";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../redux/slices/authSlice";
 
 export default function Header() {
     const [popup, setPopup] = React.useState(0);
     const [mobileMenu, setMobileMenu] = React.useState(false);
-    const isUser = true;
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    React.useEffect(() => {
+        getUser();
+    }, []);
+
     return (
         <header>
             <img
@@ -28,7 +35,7 @@ export default function Header() {
                 <img src={magnifier} alt="Найти" />
                 <input type="text" placeholder="Поиск" name="find" />
             </div>
-            {isUser ? (
+            {useSelector((state) => state.auth.token) != null ? (
                 <div className="userInfo">
                     <img
                         alt="Уведомления"
@@ -59,7 +66,13 @@ export default function Header() {
                     {popup == 2 ? <Popup /> : ""}
                 </div>
             ) : (
-                <button>Регистрация</button>
+                <button
+                    onClick={() => {
+                        navigate("../sing-up");
+                    }}
+                >
+                    Регистрация
+                </button>
             )}
             <img
                 alt="Меню"
@@ -70,8 +83,21 @@ export default function Header() {
                 }}
             />
             <div className={"mobile-nav-bar" + (mobileMenu ? " show" : "")}>
-                <LeftSideNavBar isMobile={true} setMobileMenu={setMobileMenu}/>
+                <LeftSideNavBar isMobile={true} setMobileMenu={setMobileMenu} />
             </div>
         </header>
     );
+    function getUser() {
+        console.log(sessionStorage.getItem("token"));
+        if (sessionStorage.getItem("token") == null) return;
+        axios
+            .get(window.location.origin + "/api/user", {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                },
+            })
+            .then((response) => {
+                dispatch(setUser(response.data));
+            });
+    }
 }

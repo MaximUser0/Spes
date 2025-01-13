@@ -12,8 +12,8 @@ export default function NewsBlock({array, type}) {
                     key={type + "-list-block-" + index}
                     className={"block" + index}
                 >
-                    <h2>{value.name}</h2>
-                    <p>{value.text}</p>
+                    <h2>{value.title}</h2>
+                    <p>{value.description}</p>
                     <div className="info">
                         <img alt="Дата" src={date_icon} />
                         <p>{value.date}</p>

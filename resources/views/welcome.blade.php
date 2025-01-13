@@ -11,6 +11,7 @@
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <title>Spes</title>
+    
 
     @viteReactRefresh
     @vite('resources/js/index.jsx')
@@ -18,7 +19,7 @@
 </head>
 
 <body>
-    <!--<script src="https://www.google.com/recaptcha/api.js?render=6Lf_F9ApAAAAAHNIJBH2CYcBboCpDF26dr_uy4pC"></script>-->
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LfzjLAqAAAAAASZvgT8XW8DxlDdta9OiZr5cUzR"></script>
     <div id="app"></div>
 </body>
 

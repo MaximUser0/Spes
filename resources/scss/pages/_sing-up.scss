@@ -15,6 +15,15 @@
             padding: 8px 15px;
             font-size: 20px;
         }
+        .error{
+            border: 1px solid #ba183b;
+            color: #ba183b;
+        }
+        .error-message {
+            margin-top: 20px;
+            margin-bottom: -40px;
+            color: #ba183b;
+        }
     }
     .right {
         background-color: var(--gray);
