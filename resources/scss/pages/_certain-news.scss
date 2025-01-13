@@ -60,9 +60,14 @@
         border-top: 1px solid #cacaca;
     }
     .addComment {
+        position: relative;
         display: flex;
         gap: 10px;
         margin-bottom: 1.3vw;
+        width: fit-content;
+        @media (max-width: 580px) {
+            max-width: 100%;
+        }
         & > img {
             width: 50px;
             height: 50px;
@@ -80,6 +85,59 @@
             @media (max-width: 1080px) {
                 max-width: 100%;
             }
+        }
+        button {
+            position: absolute;
+            display: none;
+            right: -50px;
+            bottom: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            background-color: var(--gray);
+            @media (max-width: 1150px) {
+                right: 5px;
+                bottom: 5px;
+            }
+            img {
+                width: auto;
+                height: 18px;
+                margin: auto;
+                padding-left: 1px;
+                padding-top: 4px;
+            }
+        }
+        @media (max-width: 550px) {
+            textarea {
+                border-radius: 8px 8px 8px 8px;
+            }
+            button {
+                width: 30px;
+                height: 30px;
+                right: 3px;
+                bottom: 3px;
+                img {
+                    height: 15px;
+                }
+            }
+        }
+    }
+    .activeAdd {
+        @media (max-width: 1150px) {
+            textarea {
+                border-radius: 15px 15px 25px 15px;
+                padding-right: 50px;
+            }
+        }
+        @media (max-width: 550px) {
+            textarea {
+                border-radius: 8px 8px 18px 8px;
+                padding-right: 40px;
+            }
+        }
+
+        button {
+            display: block;
         }
     }
     .comment {

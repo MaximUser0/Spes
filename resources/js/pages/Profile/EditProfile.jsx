@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function EditProfile() {
     const [showMenu, setShowMenu] = React.useState(false);
+    const [edit, setEdit] = React.useState(false);
     const user = { name: "Name Surname", user_name: "@dokspo", src: example };
     const navigate = useNavigate();
     return (
@@ -20,7 +21,7 @@ export default function EditProfile() {
                     </div>
                     <button
                         onClick={() => {
-                            navigate("../profile");
+                            setEdit(true);
                         }}
                     >
                         Сохранить
@@ -37,7 +38,7 @@ export default function EditProfile() {
                         <div className="mobile-menu">
                             <p
                                 onClick={() => {
-                                    navigate("../profile");
+                                    setEdit(true);
                                 }}
                                 className="active"
                             >
@@ -58,7 +59,7 @@ export default function EditProfile() {
                 <div className="menu">
                     <p className="active">Профиль</p>
                 </div>
-                <UserInfo isReadOnly={false} />
+                <UserInfo isReadOnly={false} edit={{edit, setEdit}} />
             </div>
         </div>
     );

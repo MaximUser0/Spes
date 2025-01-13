@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-//import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import Header from "./components/Header";
 import LeftSideNavBar from "./components/LeftSideNavBar.jsx";
@@ -41,6 +41,7 @@ import EditProfile from "./pages/Profile/EditProfile.jsx";
 
 export default function App() {
     const [sidePanels, setSidePanels] = React.useState([0, 1, 3, 4]);
+    const token = useSelector((state) => state.auth.token);
     const location = useLocation();
 
     React.useEffect(() => {
@@ -73,7 +74,7 @@ export default function App() {
             <Header />
             <div>
                 <div className="leftSide">
-                    {sidePanels.indexOf(0) != -1 ? <LeftSideUserInfo /> : ""}
+                    {sidePanels.indexOf(0) != -1 && token != null ? <LeftSideUserInfo /> : ""}
                     {sidePanels.indexOf(1) != -1 ? (
                         <LeftSideNavBar isMobile={false} />
                     ) : (

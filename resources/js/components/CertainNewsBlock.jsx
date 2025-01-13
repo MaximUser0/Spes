@@ -2,10 +2,14 @@ import React from "react";
 import date_icon from "../assets/img/date-icon.svg";
 import comment_icon from "../assets/img/reaction-count-icon.svg";
 import arrow from "../assets/img/arrow-back.svg";
+import arrow2 from "../assets/img/arrow-follow.svg";
 import { Link } from "react-router-dom";
 import example from "../assets/img/example-image.jpg";
 
-export default function CertainNewsBlock({ array, type }) {
+export default function CertainNewsBlock({ array, type, addNewComment }) {
+    const [comment, setComment] = React.useState("");
+    const id = window.location.pathname.split("/")[2];
+
     return (
         <div className="CertainNews">
             <img alt="Изображение" src={array.image} />
@@ -18,19 +22,30 @@ export default function CertainNewsBlock({ array, type }) {
                 <h1>{array.title}</h1>
                 <div>
                     <img alt="Дата" src={date_icon} />
-                    <p>{array.date}</p>
+                    <p>{array.date.slice(0, 10)}</p>
                     <img alt="Коментарии" src={comment_icon} />
                     <p>{array.comment_counter}</p>
                 </div>
             </div>
             <p>{array.text}</p>
             <h2>Коментарии</h2>
-            <div className="addComment">
+            <div className={"addComment" + (comment != "" ? " activeAdd" : "")}>
                 <img alt="Ваше фото" src={example} />
                 <textarea
                     type="text"
                     placeholder="Оставьте свой коментарий"
+                    value={comment}
+                    onChange={(e) => {
+                        setComment(e.target.value);
+                    }}
                 ></textarea>
+                <button
+                    onClick={() => {
+                        sentComment();
+                    }}
+                >
+                    <img alt="Отправить" src={arrow2} />
+                </button>
             </div>
             <hr />
             {array.comments.map((comment, index) => (
@@ -39,12 +54,12 @@ export default function CertainNewsBlock({ array, type }) {
                     className="comment"
                 >
                     <div>
-                        <img alt="Фото пользователя" src={comment.image} />
+                        <img alt="Фото пользователя" src={comment.src} />
                         <div>
                             <p>Name Surname</p>
                             <p>
                                 <img alt="Дата" src={date_icon} />
-                                {comment.date}
+                                {comment.date.slice(0, 10)}
                             </p>
                         </div>
                     </div>
@@ -54,4 +69,30 @@ export default function CertainNewsBlock({ array, type }) {
             ))}
         </div>
     );
+    function sentComment() {
+        if (sessionStorage.getItem("token") == null) return;
+        const data = { text: comment };
+        const urlType = type == "news" ? "news" : "article";
+        axios
+            .post(
+                window.location.origin +
+                    "/api/" +
+                    urlType +
+                    "/" +
+                    id +
+                    "/comment",
+                data,
+                {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            )
+            .then((response) => {
+                addNewComment(response.data);
+                setComment("");
+            });
+    }
 }

@@ -78,19 +78,6 @@ class AuthController extends Controller
         return response()->json(['token' => $token, 'user' => $user], 200);
     }
 
-    public function update(Request $request)
-    {
-        $check = [
-            'unique_name' => 'regex:/^[a-zA-Z0-9]+$/u|max:255|unique:users,unique_name',
-            'name' => 'required|regex:/^[А-Яа-яA-Za-z-\s]+$/u',
-            'email' => 'email|unique:users,email',
-            'info' => 'nullable',
-        ];
-        $validated = $this->validate($request, $check);
-        auth()->user()->update($validated);
-        return response()->json(auth()->user(), 200);
-    }
-
     public function updateImage(Request $request)
     {
         $this->validate($request, [

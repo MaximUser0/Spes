@@ -24,7 +24,7 @@ export default function Profile({ setPanels }) {
         "Мои подписки",
     ];
     const blocks = [
-        <UserInfo isReadOnly={true} />,
+        <UserInfo isReadOnly={true} edit={{edit: false}}/>,
         <ForumBlock />,
         <ChatsBlock />,
         <FriendsBlock />,

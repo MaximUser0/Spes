@@ -1,16 +1,13 @@
 import React from "react";
 import NewsBlock from "../components/NewsBlock.jsx";
-import image from "../assets/img/image-for-news-1.png";
-import image2 from "../assets/img/image-for-news-2.png";
 
 export default function Home() {
-    const news = [
-        { id: 1, src: null, title: "Денежная компенсация", date: '19.09.24', comment_counter: 4, description: 'Денежную компенсацию за ТСР инвалидам отменяют с 1 января 2025 года. Такое положение содержится в статье 16 закона об особенностях исполнения бюджетов бюджетной системы в 2025 году.' },
-        { id: 1, src: null, title: "Долговременный уход", date: '15.09.24', comment_counter: 8, description: '29 сентября 2020 года Минтруд выпустил Приказ N 667 "О реализации в отдельных субъектах Российской Федерации в 2021 году Типовой модели системы долговременного ухода за гражданами пожилого возраста и инвалидами.' },
-        { id: 1, src: image, title: "Уход за инвалидами", date: '19.09.24', comment_counter: 4, description: 'С 1 января 2025 года произойдут изменения в системе выплат по уходу за пожилыми людьми и инвалидами. В настоящее время выплаты в размере 1200 рублей получают люди, которые ухаживают за инвалидами I группы или пенсионерами старше 80 лет.' },
-        { id: 1, src: image2, title: "Большая пенсия", date: '15.09.24', comment_counter: 8, description: 'Описание' },
-        { id: 1, src: null, title: "Пенсия госслужащих", date: '19.09.24', comment_counter: 4, description: 'Выгодно быть государственным служащим на пенсии – многие и держатся за госслужбу именно для этого, ждут, когда отработают нужное количество лет. Потому что тут важна выслуга.' },
-        { id: 1, src: null, title: "Служба в армии", date: '15.09.24', comment_counter: 8, description: 'По нормам пенсионного законодательства, действовавшего до 1 января 2015 года, в страховой стаж засчитывались иные, так называемые «нестраховые» периоды, за которые не перечислялись страховые взносы.' },
-    ];
-    return <NewsBlock array={news} type={"news"}/>;
+    const [news, setNews] = React.useState([]);
+    React.useEffect(() => {
+        axios.get(window.location.origin + "/api/news", {}).then((result) => {
+            console.log(result.data);
+            setNews(result.data);
+        });
+    }, []);
+    return <NewsBlock array={news} type={"news"} />;
 }

@@ -7,15 +7,12 @@ import { store } from "./redux/store";
 import App from "./app";
 import "./bootstrap";
 
-
 ReactDOM.createRoot(document.getElementById("app")).render(
     <BrowserRouter>
-        <React.StrictMode>
-            <Provider store={store}>
-                <ProfileProvider>
-                    <App />
-                </ProfileProvider>
-            </Provider>
-        </React.StrictMode>
+        <Provider store={store}>
+            <ProfileProvider>
+                <App />
+            </ProfileProvider>
+        </Provider>
     </BrowserRouter>
 );

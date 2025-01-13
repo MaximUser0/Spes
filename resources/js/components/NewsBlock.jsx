@@ -5,6 +5,7 @@ import arrow from "../assets/img/arrow-follow.svg";
 import { Link } from "react-router-dom";
 
 export default function NewsBlock({array, type}) {
+    console.log(array)
     return (
         <div className="NewsBlock">
             {array.map((value, index) => (
@@ -16,11 +17,11 @@ export default function NewsBlock({array, type}) {
                     <p>{value.description}</p>
                     <div className="info">
                         <img alt="Дата" src={date_icon} />
-                        <p>{value.date}</p>
+                        <p>{value.updated_at.slice(0, 10)}</p>
                         <img alt="Коментарии" src={reaction} />
                         <p>{value.comment_counter}</p>
                     </div>
-                    {index == 2 || index == 3 ?<img alt="Изображение новости" src={value.src} />: ""}
+                    {index == 2 || index == 3 ?<img alt="Изображение новости" src={value.example_image} />: ""}
                     <Link to={"/" + type + "/"+value.id}>
                         <button>
                             <img alt="Перейти" src={arrow} />
