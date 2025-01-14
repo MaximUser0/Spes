@@ -4,7 +4,7 @@ import menu_icon from "../../assets/img/menu-icon.svg";
 import profile_icon from "../../assets/img/profile-icon.svg";
 import { Link } from "react-router-dom";
 
-export default function ListBlock({ array, type, texts, image }) {
+export default function ListBlock({ array, type, texts, functions, image }) {
     const [selectedMenuPopup, setSelectedMenuPopup] = React.useState(-1);
     return (
         <>
@@ -15,9 +15,13 @@ export default function ListBlock({ array, type, texts, image }) {
                         <Link to={type != "forums" ? "./" + elem.id : ""}>
                             <h2>{elem.name}</h2>
                         </Link>
-                        <p>
+                        <p
+                            onClick={() => {
+                                functions[0](index);
+                            }}
+                        >
                             <img alt="Чат" src={chat_icon} />
-                            {texts[2]}
+                            {texts[0]}
                         </p>
                     </div>
                     <img
@@ -36,13 +40,21 @@ export default function ListBlock({ array, type, texts, image }) {
                     />
                     {selectedMenuPopup == index ? (
                         <div className="menuPopup">
-                            <div>
-                                <img alt={texts[0]} src={profile_icon} />
-                                <p>{texts[0]}</p>
-                            </div>
-                            <div>
-                                <img alt={texts[1]} src={image} />
+                            <div
+                                onClick={() => {
+                                    functions[1](index);
+                                }}
+                            >
+                                <img alt={texts[1]} src={profile_icon} />
                                 <p>{texts[1]}</p>
+                            </div>
+                            <div
+                                onClick={() => {
+                                    functions[2](index);
+                                }}
+                            >
+                                <img alt={texts[1]} src={image} />
+                                <p>{texts[2]}</p>
                             </div>
                         </div>
                     ) : (

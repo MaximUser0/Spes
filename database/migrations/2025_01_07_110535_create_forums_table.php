@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('src');
             $table->string('title');
             $table->text('description');
-            $table->json('messages');
+            $table->json('messages')->nullable();
             
             $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

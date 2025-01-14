@@ -174,6 +174,11 @@
                     }
                 }
             }
+            & > h2 {
+                text-align: center;
+                margin-top: 190px;
+                margin-bottom: 170px;
+            }
             @media (max-width: 550px) {
                 & > div {
                     padding: 10px 0;

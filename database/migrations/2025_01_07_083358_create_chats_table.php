@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_one_id')->unsigned();
             $table->bigInteger('user_two_id')->unsigned();
-            $table->json('messages');
+            $table->json('messages')->nullable();
             
             $table->foreign('user_one_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('user_two_id')->references('id')->on('users')->onDelete('cascade');

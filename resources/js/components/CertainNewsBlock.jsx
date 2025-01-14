@@ -34,6 +34,8 @@ export default function CertainNewsBlock({ array, type, addNewComment }) {
                 <textarea
                     type="text"
                     placeholder="Оставьте свой коментарий"
+                    readOnly={sessionStorage.getItem("token") == null}
+                    title={sessionStorage.getItem("token") == null ? "Войдите в аккаунт, чтобы оставлять комментарии" : ""}
                     value={comment}
                     onChange={(e) => {
                         setComment(e.target.value);

@@ -1,6 +1,5 @@
 import React from "react";
 import { ProfileContext } from "../../context/ProfileContext";
-import example from "../../assets/img/example-image.jpg";
 import arrow_down from "../../assets/img/arrow-down.svg";
 import UserInfo from "./UserInfo";
 import ForumBlock from "./ForumBlock";
@@ -9,9 +8,10 @@ import FriendsBlock from "./FriendsBlock";
 import SubscribersBlock from "./SubscribersBlock";
 import SubscriptionsBlock from "./SubscriptionsBlock";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Profile({ setPanels }) {
-    const user = { name: "Name Surname", user_name: "@dokspo", src: example };
+    const user = useSelector((state) => state.auth.user);
     const { selectedMenu, setSelectedMenu } = React.useContext(ProfileContext);
     const [showMobileMenu, setShowMobileMenu] = React.useState(false);
     const navigate = useNavigate();
@@ -65,7 +65,7 @@ export default function Profile({ setPanels }) {
                     <img alt="Фотография пользователя" src={user.src} />
                     <div>
                         <h2>{user.name}</h2>
-                        <p>{user.user_name}</p>
+                        <p>@user_name</p>
                     </div>
                     <button
                         onClick={() => {

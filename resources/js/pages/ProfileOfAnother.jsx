@@ -1,26 +1,17 @@
 import React from "react";
 import { ProfileContext } from "../context/ProfileContext";
 import arrow_down from "../assets/img/arrow-down.svg";
-import example from "../assets/img/example-image.jpg";
 import { useNavigate } from "react-router-dom";
 
 export default function ProfileOfAnother() {
     const { selectedMenu, setSelectedMenu } = React.useContext(ProfileContext);
     const [showMenu, setShowMenu] = React.useState(false);
+    const id = window.location.pathname.split("/")[2];
     const navigate = useNavigate();
-    const info = {
-        name: "Name",
-        surname: "Surname",
-        age: 25,
-        purpose_of_dating: "Цель знакомства",
-        hobbies: "Интересы и увлечения",
-        about: "О себе",
-        email: "euhqbeuqb@mail.ru",
-        number_phone: "8(810)000-00-00",
-        city: "Астрахань",
-        src: example,
-        user_name: "@dokspo",
-    };
+    const [info, setInfo] = React.useState({
+        name: "",
+        src: null,
+    });
     const menuList = [
         "Профиль",
         "Форум",
@@ -29,7 +20,14 @@ export default function ProfileOfAnother() {
         "Подписчики",
         "Мои подписки",
     ];
+    const buttonList = [
+        "Подписаться",
+        "Добавить в друзья",
+        "Отписаться",
+        "Удалить из друзей"
+    ];
     React.useEffect(() => {
+        getAnotherUser();
         setSelectedMenu(0);
     }, []);
     return (
@@ -37,12 +35,12 @@ export default function ProfileOfAnother() {
             <div className="grayBlock"></div>
             <div className="content">
                 <div className="info">
-                    <img alt="Фотография пользователя" src={info.src} />
+                    <img alt="Фотография пользователя" src={info.src == null ? "../img/Example2.svg" : info.src} />
                     <div>
-                        <h2>{info.name + " " + info.surname}</h2>
-                        <p>{info.user_name}</p>
+                        <h2>{defaultValue(info.name)}</h2>
+                        <p>{"@user_name"}</p>
                     </div>
-                    <button>Подписаться</button>
+                    <button>{buttonList[info.relation]}</button>
                     <button
                         onClick={() => {
                             setShowMenu(!showMenu);
@@ -84,31 +82,51 @@ export default function ProfileOfAnother() {
                     <div>
                         <h2>Общие данные</h2>
                         <p>Имя</p>
-                        <h2>{info.name}</h2>
+                        <h2>{defaultValue(info.name.split(" ")[0])}</h2>
                         <p>Фамилия</p>
-                        <h2>{info.surname}</h2>
+                        <h2>{defaultValue(info.name.split(" ")[1])}</h2>
                         <p>Возраст</p>
                         <h2>
-                            {info.age +
-                                " " +
-                                (info.age % 10 == 1
-                                    ? info.age == 11
-                                        ? "лет"
-                                        : "год"
-                                    : "лет")}
+                            {info.date_of_birth != null
+                                ? getAge(info.date_of_birth)
+                                : "Не указан"}
                         </h2>
                     </div>
                     <div>
                         <h2>Личная информация</h2>
                         <p>Цель знакомства</p>
-                        <h2>{info.purpose_of_dating}</h2>
+                        <h2>{defaultValue(info.purpose_of_dating)}</h2>
                         <p>Интересы и увлечения</p>
-                        <h2>{info.hobbies}</h2>
+                        <h2>{defaultValue(info.hobbies)}</h2>
                         <p>О себе</p>
-                        <h2>{info.about}</h2>
+                        <h2>{defaultValue(info.about)}</h2>
                     </div>
                 </div>
             </div>
         </div>
     );
+    function getAnotherUser() {
+        if (sessionStorage.getItem("token") == null) return;
+        axios
+            .get(window.location.origin + "/api/user/" + id, {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                },
+            })
+            .then((response) => {
+                setInfo(response.data);
+            });
+    }
+    function defaultValue(value) {
+        if (value == null) return "Не указано";
+        else return value;
+    }
+    function getAge(date_of_birth) {
+        const date = new Date(date_of_birth);
+        const now = new Date();
+        let result = Math.round((now - date) / 31536000000);
+        result +=
+            " " + (result % 10 == 1 ? (result == 11 ? "лет" : "год") : "лет");
+        return result;
+    }
 }

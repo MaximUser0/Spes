@@ -1,0 +1,28 @@
+.MapBlock {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    grid-column: 2/4;
+    border: 1px solid var(--font);
+    height: min-content;
+    .city {
+        color: #eee;
+        font-size: 12px;
+        position: absolute;
+        top: 0px;
+    }
+    .address {
+        color: #eee;
+        font-size: 12px;
+        position: absolute;
+        top: 14px;
+    }
+    & > iframe {
+        position: relative;
+        width: 100%;
+        height: 800px;
+        @media (max-width: 1080px) {
+            height: calc(100vh - 78px - 3vw);
+        }
+    }
+}
