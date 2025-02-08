@@ -3,6 +3,6 @@ import Forum from '../Forum'
 
 export default function ChatsBlock() {
   return (
-    <Forum />
+    <Forum type="chat"/>
   )
 }

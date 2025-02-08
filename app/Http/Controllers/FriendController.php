@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Friend;
+use App\Models\News;
 use App\Models\Subscriber;
 use App\Models\User;
+use DB;
 use Illuminate\Http\Request;
 
 class FriendController extends Controller
@@ -48,5 +51,22 @@ class FriendController extends Controller
             ->first();
         $friend->delete();
         return response('', 204);
+    }
+
+    public function find(Request $request)
+    {
+        $this->validate($request, ['text' => "required"]);
+        $users = User::where('name', 'LIKE', '%' . $request->text . "%")
+            ->select('name', 'src', 'id', DB::raw('"user" AS type'))
+            ->get();
+        $news = News::where('title', 'LIKE', '%' . $request->text . "%")
+            ->select('title', 'src', 'id', DB::raw('"news" AS type'))
+            ->get();
+        $articles = Article::where('title', 'LIKE', '%' . $request->text . "%")
+            ->select('title', 'src', 'id', DB::raw('"articles" AS type'))
+            ->get();
+        $data = $users->merge($news);
+        $data = $data->merge($articles);
+        return response()->json($data, 200);
     }
 }

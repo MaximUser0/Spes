@@ -3,41 +3,27 @@ import GridBock from "../GridBock";
 import { Link } from "react-router-dom";
 
 export default function AdminArticles() {
-    const articles = [
-        {
-            title: "Не опускайте руки",
-            text: "В современном мире идет активное развитие технологий и роботизации производств, однако уровень травматизма сохраняется. ",
-            href: "./edit/1",
-        },
-        {
-            title: "О чем ты мечтаешь?",
-            text: "В современном мире идет активное развитие технологий и роботизации производств, однако уровень травматизма сохраняется. ",
-            href: "./edit/2",
-        },
-        {
-            title: "Не опускайте руки",
-            text: "В современном мире идет активное развитие технологий и роботизации производств, однако уровень травматизма сохраняется. ",
-            href: "./edit/3",
-        },
-        {
-            title: "Не опускайте руки",
-            text: "В современном мире идет активное развитие технологий и роботизации производств, однако уровень травматизма сохраняется. ",
-            href: "./edit/4",
-        },
-        {
-            title: "О чем ты мечтаешь?",
-            text: "В современном мире идет активное развитие технологий и роботизации производств, однако уровень травматизма сохраняется. Каждый десятый человек имеет нарушение структур организма, снижающие его функциональность.",
-            href: "./edit/5",
-        },
-        {
-            title: "О чем ты мечтаешь?",
-            text: "В современном мире идет активное развитие технологий и роботизации производств, однако уровень травматизма сохраняется. ",
-            href: "./edit/6",
-        },
-    ];
+    const [articles, setArticles] = React.useState([]);
+    React.useEffect(() => {
+        axios
+            .get(window.location.origin + "/api/article", {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                },
+            })
+            .then((result) => {
+                console.log(result.data);
+                setArticles(
+                    result.data.map(function (elem) {
+                        elem["href"] = "./edit/" + elem.id;
+                        return elem;
+                    })
+                );
+            });
+    }, []);
     return (
         <div className="AdminNews">
-            <GridBock array={articles} type="articles" />
+            <GridBock array={articles} type="article" />
             <Link to="./add">
                 <button>Добавить статью</button>
             </Link>

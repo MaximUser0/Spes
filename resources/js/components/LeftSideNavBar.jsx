@@ -4,11 +4,13 @@ import user_icon from "../assets/img/user-icon.svg";
 import whats_app from "../assets/img/whats-app.png";
 import telegram from "../assets/img/telegram.png";
 import vkontakte from "../assets/img/vkontakte.png";
+import { useSelector } from "react-redux";
 
 export default function LeftSideNavBar({ isMobile, setMobileMenu }) {
     const page = window.location.pathname.split("/", 2)[1];
     const isUser = true;
     const navigate = useNavigate();
+    const user = useSelector((state) => state.auth.user);
     function moveTo(href) {
         navigate(href);
         if (isMobile) {
@@ -211,7 +213,7 @@ export default function LeftSideNavBar({ isMobile, setMobileMenu }) {
                     </div>
                     <p>Форум</p>
                 </div>
-                {true ? (
+                {user.is_admin ? (
                     <div
                         onClick={() => {
                             moveTo("../admin-panel");

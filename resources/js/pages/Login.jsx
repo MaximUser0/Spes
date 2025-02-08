@@ -52,13 +52,21 @@ export default function Login() {
                             message:
                                 "Вы не прошли reCaptcha, попробуйте ещё раз.",
                         });
-                    } else {
+                        return;
+                    }
+                    if (error.response.data == "You are blocked") {
                         setError({
                             input: 1,
-                            message: "Неправильный E-mail или пароль",
+                            message:
+                                "Ваш аккаунт заблокирован!",
                         });
                         return;
                     }
+                    setError({
+                        input: 1,
+                        message: "Неправильный E-mail или пароль",
+                    });
+                    return;
                 });
         });
     }

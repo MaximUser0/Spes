@@ -30,6 +30,8 @@ class AuthController extends Controller
         }*/
 
         if (auth()->attempt($request->only('email', 'password'))) {
+            if (auth()->user()->is_blocked)
+                return response()->json('You are blocked', 403);
             $token = auth()->user()->createToken('token')->plainTextToken;
             $user = auth()->user();
             return response()->json(['token' => $token, 'user' => $user], '200');
@@ -76,22 +78,6 @@ class AuthController extends Controller
         auth()->login($user);
         $token = auth()->user()->createToken('token')->plainTextToken;
         return response()->json(['token' => $token, 'user' => $user], 200);
-    }
-
-    public function updateImage(Request $request)
-    {
-        $this->validate($request, [
-            'image' => 'required|image|max:4096',
-        ]);
-        $user = auth()->user();
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->storeAs('public/photo', $imageName);
-        if ($user->image != null) {
-            Storage::disk('public')->delete(explode("storage/", $user->image)[1]);
-        }
-        $user->image = asset('storage/photo/' . $imageName);
-        $user->save();
-        return response()->json($user, 200);
     }
 
     public function index(Request $request)

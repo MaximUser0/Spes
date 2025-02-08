@@ -23,17 +23,17 @@ export default function CertainNewsBlock({ array, type, addNewComment }) {
                 <div>
                     <img alt="Дата" src={date_icon} />
                     <p>{array.date.slice(0, 10)}</p>
-                    <img alt="Коментарии" src={comment_icon} />
+                    <img alt="Комментарии" src={comment_icon} />
                     <p>{array.comment_counter}</p>
                 </div>
             </div>
             <p>{array.text}</p>
-            <h2>Коментарии</h2>
+            <h2>Комментарии</h2>
             <div className={"addComment" + (comment != "" ? " activeAdd" : "")}>
                 <img alt="Ваше фото" src={example} />
                 <textarea
                     type="text"
-                    placeholder="Оставьте свой коментарий"
+                    placeholder="Оставьте свой комментарий"
                     readOnly={sessionStorage.getItem("token") == null}
                     title={sessionStorage.getItem("token") == null ? "Войдите в аккаунт, чтобы оставлять комментарии" : ""}
                     value={comment}

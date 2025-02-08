@@ -177,7 +177,7 @@
             & > h2 {
                 text-align: center;
                 margin-top: 190px;
-                margin-bottom: 170px;
+                margin-bottom: 160px;
             }
             @media (max-width: 550px) {
                 & > div {
@@ -251,6 +251,9 @@
             width: 13vw;
             border-bottom: 1px solid #787878 !important;
         }
+    }
+    #change-user-image{
+        display: none;
     }
 }
 @media (max-width: 1080px) {

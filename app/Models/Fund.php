@@ -10,6 +10,7 @@ class Fund extends Model
     use HasFactory;
     protected $fillable = [
         "owner_id",
-        "title"
+        "title",
+        "image"
     ];
 }

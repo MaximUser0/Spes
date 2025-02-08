@@ -1,7 +1,5 @@
 import React from "react";
 import logo from "../../assets/img/logo.svg";
-import magnifier from "../../assets/img/magnifier.svg";
-import user_image from "../../assets/img/example-image.jpg";
 import arrow from "../../assets/img/arrow-menu.svg";
 import bell from "../../assets/img/bell-icon.svg";
 import mobile_menu from "../../assets/img/mobile-menu.svg";
@@ -11,12 +9,14 @@ import Popup from "./Popup";
 import LeftSideNavBar from "../LeftSideNavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/slices/authSlice";
+import Find from "./Find";
 
 export default function Header() {
     const [popup, setPopup] = React.useState(0);
     const [mobileMenu, setMobileMenu] = React.useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.auth.user);
 
     React.useEffect(() => {
         getUser();
@@ -31,10 +31,7 @@ export default function Header() {
                     navigate("/");
                 }}
             />
-            <div className="find">
-                <img src={magnifier} alt="Найти" />
-                <input type="text" placeholder="Поиск" name="find" />
-            </div>
+            <Find />
             {useSelector((state) => state.auth.token) != null ? (
                 <div className="userInfo">
                     <img
@@ -48,14 +45,16 @@ export default function Header() {
                     <img
                         alt="Фото профиля"
                         className="userImage"
-                        src={user_image}
+                        src={
+                            user.src != null ? user.src : "../img/Example2.svg"
+                        }
                     />
                     <p
                         onClick={() => {
                             setPopup(popup == 2 ? 0 : 2);
                         }}
                     >
-                        Name Surname
+                        {user.name}
                         <img
                             alt="Меню"
                             className={popup == 2 ? "reverse" : ""}
@@ -63,7 +62,7 @@ export default function Header() {
                         />
                     </p>
                     {popup == 1 ? <RequestPopup /> : ""}
-                    {popup == 2 ? <Popup /> : ""}
+                    {popup == 2 ? <Popup setPopup={setPopup} /> : ""}
                 </div>
             ) : (
                 <button

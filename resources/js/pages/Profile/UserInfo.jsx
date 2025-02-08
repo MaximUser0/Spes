@@ -110,27 +110,21 @@ export default function UserInfo({ isReadOnly, edit }) {
     );
 
     function update() {
-        const body = {
+        const array = {
             name:
                 document.getElementById("update-info-name").value +
                 " " +
                 document.getElementById("update-info-surname").value,
-            date_of_birth: document.getElementById("update-info-age").value,
-            purpose_of_dating: document.getElementById("update-info-purpose")
-                .value,
-            hobbies: document.getElementById("update-info-hobbies").value,
-            about: document.getElementById("update-info-about").value,
             email: document.getElementById("update-info-email").value,
             number_phone: document.getElementById("update-info-number").value,
-            city: document.getElementById("update-info-city").value,
         };
         let error_check = !/^[\w.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(
-            body.email
+            array.email
         )
             ? { input: 2, message: "Неправильный формат почты" }
-            : !/^[а-яА-Яa-zA-Z0-9]+ +[а-яА-Яa-zA-Z0-9]+$/.test(body.name)
+            : !/^[а-яА-Яa-zA-Z0-9]+ +[а-яА-Яa-zA-Z0-9]+$/.test(array.name)
             ? { input: 1, message: "Неправильный формат имени" }
-            : !/^[+0-9]{11,15}$/.test(body.number_phone)
+            : !/^[+0-9]{11,15}$/.test(array.number_phone)
             ? {
                   input: 3,
                   message: "Неправильный формат номера (только цифры и '+')",
@@ -141,12 +135,37 @@ export default function UserInfo({ isReadOnly, edit }) {
             edit.setEdit(false);
             return;
         }
-        if (body.email == info.email) {
-            delete body.email;
+
+        const body = new FormData();
+        body.append("name", array.name);
+        body.append(
+            "date_of_birth",
+            document.getElementById("update-info-age").value
+        );
+        body.append(
+            "purpose_of_dating",
+            document.getElementById("update-info-purpose").value
+        );
+        body.append(
+            "hobbies",
+            document.getElementById("update-info-hobbies").value
+        );
+        body.append(
+            "about",
+            document.getElementById("update-info-about").value
+        );
+
+        body.append("number_phone", array.number_phone);
+        body.append("city", document.getElementById("update-info-city").value);
+        if (array.email != info.email) {
+            body.append("email", array.email);
+        }
+        if (edit.userImage != null) {
+            body.append("src", edit.userImage);
         }
 
         axios
-            .patch(window.location.origin + "/api/user", body, {
+            .post(window.location.origin + "/api/user", body, {
                 headers: {
                     Authorization: `Bearer ${sessionStorage.getItem("token")}`,
                 },

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     token: sessionStorage.getItem("token"),
-    user: null,
+    user: { name: "", src: "../img/Example2.svg" },
 };
 
 export const authSlice = createSlice({

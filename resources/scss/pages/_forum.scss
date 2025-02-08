@@ -119,17 +119,23 @@
                 }
             }
         }
+        .hidden {
+            display: none;
+        }
     }
     .chat {
         border-left: 1px solid #cacaca;
         border-bottom: 1px solid #cacaca;
         height: 100%;
         overflow-x: auto;
+        display: flex;
         & > div {
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column;
             padding: 8px 2vw 8px 71px;
-            min-height: 100%;
+            margin: auto 0 0 0;
+            height: min-content;
+            width: 100%;
             & > div {
                 background-color: #efefef;
                 width: max-content;
@@ -141,6 +147,11 @@
                     padding: 0 0.8vw 0.3vw 0;
                     font-size: 20px;
                 }
+                img {
+                    max-width: 100%;
+                    max-height: 400px;
+                    border-radius: 5px;
+                }
                 .time {
                     text-align: right;
                     font-size: 14px;
@@ -150,6 +161,19 @@
             }
             .right {
                 align-self: end;
+            }
+        }
+        .file {
+            padding: 0 0 0 0;
+            position: relative;
+            .time {
+                position: absolute;
+                right: 10px;
+                bottom: 13px;
+                color: black;
+                background-color: var(--light-font);
+                padding: 1px 3px;
+                border-radius: 5px;
             }
         }
     }
@@ -170,16 +194,27 @@
             margin: 15px 10px 15px 10px;
             border-radius: 15px;
         }
+        #sent-file {
+            display: none;
+        }
     }
     @media (max-width: 900px) {
         display: block;
         min-height: 830px;
+        max-height: calc(100vh - 80px);
         height: fit-content;
         .find,
         .title,
         .chat,
         .input {
             display: none;
+        }
+        .chat {
+            height: 800px;
+            max-height: calc(100vh - 80px);
+            & > div {
+                padding: 20px;
+            }
         }
         .title button {
             display: flex;
@@ -213,6 +248,9 @@
             height: 30px;
             margin-right: 5px;
         }
+        .chat {
+            max-height: calc(100vh - 199px);
+        }
         .input {
             img {
                 height: 25px;
@@ -223,7 +261,7 @@
             }
         }
         .list > div > div {
-            img{
+            img {
                 width: 30px;
                 height: 30px;
                 margin-right: 10px;

@@ -1,21 +1,45 @@
 import React from "react";
-import example from "../../assets/img/example-image.jpg";
 import logout_icon from "../../assets/img/logout-icon.svg";
 import ListBlock from "./ListBlock";
+import { useNavigate } from "react-router-dom";
 
 export default function ForumBlock() {
-    const forums = [
-        { id: 1, name: "Название сообщества", src: example },
-        { id: 2, name: "Название сообщества", src: example },
-    ];
+    const [forums, setForums] = React.useState([]);
+    const navigate = useNavigate();
+
+    React.useEffect(() => {
+        getForums();
+    }, []);
     return (
         <div className="ForumBlock">
-            <ListBlock
-                array={forums}
-                type="forums"
-                texts={["Сообщество", "Выйти из чата", "Чат"]}
-                image={logout_icon}
-            />
+            {forums.length == 0 ? (
+                <h2>Вы пока не участвуете в форумах</h2>
+            ) : (
+                <ListBlock
+                    array={forums}
+                    type="forums"
+                    texts={["Чат", "Сообщества", "Выйти из чата"]}
+                    functions={[goToChat, goToForums, addInFriends]}
+                    image={logout_icon}
+                />
+            )}
         </div>
     );
+    function getForums() {
+        if (sessionStorage.getItem("token") == null) return;
+        axios
+            .get(window.location.origin + "/api/forum/my", {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                },
+            })
+            .then((response) => {
+                setForums(response.data);
+            });
+    }
+    function goToChat(index) {
+        navigate("../forum/" + forums[index].id);
+    }
+    function goToForums(index) {}
+    function addInFriends(index) {}
 }

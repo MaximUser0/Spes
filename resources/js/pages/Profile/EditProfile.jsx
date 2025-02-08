@@ -1,23 +1,33 @@
 import React from "react";
-import example from "../../assets/img/example-image.jpg";
 import UserInfo from "./UserInfo";
 import arrow_down from "../../assets/img/arrow-down.svg";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function EditProfile() {
     const [showMenu, setShowMenu] = React.useState(false);
     const [edit, setEdit] = React.useState(false);
-    const user = { name: "Name Surname", user_name: "@dokspo", src: example };
+    const [userImage, setUserImage] = React.useState(null);
+    const user = useSelector((state) => state.auth.user);
     const navigate = useNavigate();
     return (
         <div className="Profile EditProfile">
             <div className="grayBlock"></div>
             <div className="content">
                 <div className="info">
-                    <img alt="Фотография пользователя" src={user.src} />
+                    <img
+                        alt="Фотография пользователя"
+                        src={
+                            user.src != null ? user.src : "../img/Example2.svg"
+                        }
+                        onClick={() => {
+                            document.getElementById('change-user-image').click();
+                        }}
+                    />
+                    <input type="file" accept="image/*" id="change-user-image" onChange={(e) => {setUserImage(e.target.files[0]); console.log(e.target.files[0])}}/>
                     <div>
                         <h2>{user.name}</h2>
-                        <p>{user.user_name}</p>
+                        <p>{"@user_name"}</p>
                     </div>
                     <button
                         onClick={() => {
@@ -59,7 +69,7 @@ export default function EditProfile() {
                 <div className="menu">
                     <p className="active">Профиль</p>
                 </div>
-                <UserInfo isReadOnly={false} edit={{edit, setEdit}} />
+                <UserInfo isReadOnly={false} edit={{ edit, setEdit, userImage }} />
             </div>
         </div>
     );

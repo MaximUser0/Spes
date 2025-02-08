@@ -2,37 +2,35 @@ import React from "react";
 import GridBock from "./GridBock";
 
 export default function AdminHelp() {
-    const funds = [
-        {
-            title: "На лечение",
-            text: "Казанцева Наталья",
-            href: "./1",
-        },
-        {
-            title: "Приобретение жилья",
-            text: "Смирнов Алексей ",
-            href: "./2",
-        },
-        {
-            title: "Погашение долгов",
-            text: "Казанцева Наталья",
-            href: "./3",
-        },
-        {
-            title: "Приобретение жилья",
-            text: "Смирнов Алексей ",
-            href: "./4",
-        },
-        {
-            title: "На лечение",
-            text: "Казанцева Наталья",
-            href: "./5",
-        },
-        {
-            title: "Погашение долгов",
-            text: "Смирнов Алексей ",
-            href: "./6",
-        },
-    ];
-    return <GridBock array={funds} type="help" />;
+    const [funds, setFunds] = React.useState([]);
+    React.useEffect(() => {
+        axios
+            .get(window.location.origin + "/api/fund", {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                },
+            })
+            .then((result) => {
+                setFunds(
+                    result.data.map(function (elem) {
+                        elem["href"] = "#";
+                        return elem;
+                    })
+                );
+            });
+    }, []);
+    return <GridBock array={funds} type="help" func={deleteFunds} />;
+    function deleteFunds(index) {
+        if (!window.confirm("Удалить фонд?")) return;
+        axios
+            .delete(window.location.origin + "/api/fund/" + funds[index].id, {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                },
+            })
+            .then(() => {
+                funds.splice(index, 1);
+                setFunds([...funds]);
+            });
+    }
 }

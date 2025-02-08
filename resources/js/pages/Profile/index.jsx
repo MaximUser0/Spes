@@ -62,7 +62,7 @@ export default function Profile({ setPanels }) {
             <div className="grayBlock"></div>
             <div className="content">
                 <div className="info">
-                    <img alt="Фотография пользователя" src={user.src} />
+                    <img alt="Фотография пользователя" src={user.src != null ? user.src : "../img/Example2.svg"} />
                     <div>
                         <h2>{user.name}</h2>
                         <p>@user_name</p>

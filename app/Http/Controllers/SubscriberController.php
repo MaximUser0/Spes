@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Friend;
 use App\Models\Subscriber;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Response;
 
 class SubscriberController extends Controller
 {
@@ -30,5 +34,26 @@ class SubscriberController extends Controller
             ->first();
         $friend->delete();
         return response('', 204);
+    }
+
+    public function subscribe($user_id)
+    {
+        $user = User::findOrFail($user_id);
+        $alreadyExist = Subscriber::where('user_id', '=', $user_id)
+            ->where('subscriber_id', '=', auth()->user()->id)
+            ->orWhere('subscriber_id', '=', $user_id)
+            ->where('user_id', '=', auth()->user()->id)
+            ->count();
+        if ($alreadyExist > 0)
+            return response("Already exist", 403);
+        $alreadyExist = Friend::where('user_one_id', '=', $user_id)
+            ->where('user_two_id', '=', auth()->user()->id)
+            ->orWhere('user_two_id', '=', $user_id)
+            ->where('user_one_id', '=', auth()->user()->id)
+            ->count();
+        if ($alreadyExist > 0)
+            return response("Already exist", 403);
+        $subscriber = Subscriber::create(['user_id' => $user_id, 'subscriber_id' => auth()->user()->id]);
+        return response()->json($subscriber, 200);
     }
 }

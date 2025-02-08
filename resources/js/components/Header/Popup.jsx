@@ -6,7 +6,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setToken, setUser } from "../../redux/slices/authSlice";
 
-export default function Popup() {
+export default function Popup({ setPopup }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     function logOut() {
@@ -29,6 +29,7 @@ export default function Popup() {
         <div className="menuPopup">
             <div
                 onClick={() => {
+                    setPopup(0);
                     navigate("../profile");
                 }}
             >

@@ -4,80 +4,15 @@ import arrow from "../assets/img/arrow-follow.svg";
 import CreateFundBlock from "../components/CreateFundBlock";
 
 export default function Help() {
-    const funds = [
-        {
-            id: 1,
-            title: "На лечение",
-            date: "19.09.24",
-            owner: "Казанцева Наталья",
-        },
-        {
-            id: 1,
-            title: "Приобретение жилья",
-            date: "19.09.24",
-            owner: "Смирнов Алексей",
-        },
-        {
-            id: 1,
-            title: "Погашение долгов",
-            date: "19.09.24",
-            owner: "Морозов Александр",
-        },
-        {
-            id: 1,
-            title: "Приобретение жилья",
-            date: "19.09.24",
-            owner: "Ильина Анна 32 года",
-        },
-        {
-            id: 1,
-            title: "На лечение",
-            date: "19.09.24",
-            owner: "Радионов Михаил",
-        },
-        {
-            id: 1,
-            title: "Погашение долгов",
-            date: "19.09.24",
-            owner: "Куприянова Анастасия",
-        },
-        {
-            id: 1,
-            title: "Погашение долгов",
-            date: "19.09.24",
-            owner: "Калугин Денис",
-        },
-        {
-            id: 1,
-            title: "Приобретение жилья",
-            date: "19.09.24",
-            owner: "Романов Олег",
-        },
-        {
-            id: 1,
-            title: "На лечение",
-            date: "19.09.24",
-            owner: "Алексеев Андрей",
-        },
-        {
-            id: 1,
-            title: "Приобретение жилья",
-            date: "19.09.24",
-            owner: "Соколова Ангелина",
-        },
-        {
-            id: 1,
-            title: "На лечение",
-            date: "19.09.24",
-            owner: "Дронова Евгения",
-        },
-        {
-            id: 1,
-            title: "Погашение долгов",
-            date: "19.09.24",
-            owner: "Морозов Владимир",
-        },
-    ];
+    const [funds, setFunds] = React.useState([]);
+    React.useEffect(() => {
+        axios
+            .get(window.location.origin + "/api/fund", {})
+            .then((result) => {
+                console.log(result.data);
+                setFunds(result.data);
+            });
+    }, []);
     return (
         <div className="Help">
             {funds.map((fund, index) => (
@@ -86,7 +21,13 @@ export default function Help() {
                     <p>{fund.owner}</p>
                     <div>
                         <img alt="Дата" src={date_icon} />
-                        <p>{fund.date}</p>
+                        <p>
+                            {fund.date.slice(8, 10) +
+                                "." +
+                                fund.date.slice(5, 7) +
+                                "." +
+                                fund.date.slice(2, 4)}
+                        </p>
                     </div>
                     <button>
                         <img alt="Перейти" src={arrow} />

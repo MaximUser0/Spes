@@ -156,9 +156,19 @@
             width: 65%;
             min-height: 4vw;
         }
-        .text {
+        .text,
+        .description {
             width: 100%;
             min-height: 15vw;
+        }
+        .edit-image {
+            width: 35px;
+            height: 35px;
+            min-height: 35px;
+            margin: -10px -35px -8px -30px;
+        }
+        #change-news-image {
+            display: none;
         }
         .comment {
             position: relative;
@@ -277,6 +287,9 @@
             padding: 0 0 0.5vw 0.5vw;
         }
     }
+    #add-news-image {
+        display: none;
+    }
     @media (max-width: 1080px) {
         .content {
             padding: 25px 20px 25px 20px;
@@ -313,7 +326,7 @@
             width: 150px;
             height: 150px;
             border-radius: 15px;
-            img{
+            img {
                 width: 50px;
             }
         }

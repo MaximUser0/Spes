@@ -38,6 +38,8 @@ import CommunitiesBlock from "./components/CommunitiesBlock.jsx";
 import FriendsBlock from "./components/FriendsBlock.jsx";
 import ProfileMenuSideBlock from "./components/ProfileMenuSideBlock.jsx";
 import EditProfile from "./pages/Profile/EditProfile.jsx";
+import AdminForums from "./pages/Admin/AdminForums/index.jsx";
+import AdminForumsAdd from "./pages/Admin/AdminForums/Add.jsx";
 
 export default function App() {
     const [sidePanels, setSidePanels] = React.useState([0, 1, 3, 4]);
@@ -74,7 +76,11 @@ export default function App() {
             <Header />
             <div>
                 <div className="leftSide">
-                    {sidePanels.indexOf(0) != -1 && token != null ? <LeftSideUserInfo /> : ""}
+                    {sidePanels.indexOf(0) != -1 && token != null ? (
+                        <LeftSideUserInfo />
+                    ) : (
+                        ""
+                    )}
                     {sidePanels.indexOf(1) != -1 ? (
                         <LeftSideNavBar isMobile={false} />
                     ) : (
@@ -98,7 +104,7 @@ export default function App() {
                     <Route path="/articles" element={<Articles />} />
                     <Route path="/articles/:id" element={<Article />} />
                     <Route path="/forums" element={<Forums />} />
-                    <Route path="/forum/:id" element={<Forum />} />
+                    <Route path="/forum/:id" element={<Forum type="forum" />} />
                     <Route
                         path="/profile"
                         element={<Profile setPanels={setSidePanels} />}
@@ -118,6 +124,14 @@ export default function App() {
                         element={<AdminNewsAdd />}
                     />
                     <Route path="/admin-panel/help" element={<AdminHelp />} />
+                    <Route
+                        path="/admin-panel/forum"
+                        element={<AdminForums />}
+                    />
+                    <Route
+                        path="/admin-panel/forum/add"
+                        element={<AdminForumsAdd />}
+                    />
                     <Route
                         path="/admin-panel/articles"
                         element={<AdminArticles />}

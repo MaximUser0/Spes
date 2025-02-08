@@ -28,6 +28,7 @@ class User extends Authenticatable
         'number_phone',
         'city',
         'password',
+        'is_blocked'
     ];
 
     /**

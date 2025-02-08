@@ -58,7 +58,7 @@ export default function FriendsBlock() {
             )
             .then((response) => {
                 setSelectedMenu(2);
-                navigate("../profile?chat_id=" + response.data.id);
+                navigate("../profile?chat_id=" + response.data[0].id);
             });
     }
     function goToProfile(index) {

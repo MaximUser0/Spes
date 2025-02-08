@@ -4,7 +4,9 @@ use App\Http\Controllers\ArticleCommentController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\FriendController;
+use App\Http\Controllers\FundController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\UserController;
@@ -28,13 +30,18 @@ Route::get('news', [NewsController::class, 'index']);
 Route::get('news/{id}', [NewsController::class, 'show']);
 Route::get('article', [ArticleController::class, 'index']);
 Route::get('article/{id}', [ArticleController::class, 'show']);
+Route::get('forum', [ForumController::class, 'index']);
+Route::get('fund', [FundController::class, 'index']);
+Route::get('fund/{id}', [FundController::class, 'show']);
+Route::get('find', [FriendController::class, 'find']);
 
 Route::middleware('auth:sanctum')->group(
     function () {
         Route::get('logout', [AuthController::class, 'logout']);
         Route::get('user', [UserController::class, 'index']);
+        Route::get('user/info', [UserController::class, 'info']);
         Route::get('user/{id}', [UserController::class, 'show']);
-        Route::patch('user', [UserController::class, 'update']);
+        Route::post('user', [UserController::class, 'update']);
 
         Route::post('article/{id}/comment', [ArticleController::class, 'addComment']);
         Route::post('news/{id}/comment', [NewsController::class, 'addComment']);
@@ -45,14 +52,43 @@ Route::middleware('auth:sanctum')->group(
         Route::get('subscriber', [SubscriberController::class, 'index']);
         Route::get('subscriptions', [SubscriberController::class, 'indexMy']);
         Route::delete('subscriber/{user_id}', [SubscriberController::class, 'delete']);
+        Route::get('subscribe/{user_id}', [SubscriberController::class, 'subscribe']);
+
 
         Route::get('chat', [ChatController::class, 'index']);
         Route::get('chat/{id}', [ChatController::class, 'show']);
         Route::post('chat', [ChatController::class, 'create']);
+        Route::post('chat/file', [ChatController::class, 'sentFile']);
+        Route::patch('chat', [ChatController::class, 'update']);
 
+        Route::get('forum/my', [ForumController::class, 'myForums']);
+        Route::get('forum/{id}', [ForumController::class, 'show']);
+        Route::post('forum/join', [ForumController::class, 'joinTo']);
+        Route::patch('forum', [ForumController::class, 'update']);
+
+        Route::get('fundMy', [FundController::class, 'showMy']);
+        Route::delete('fundMy', [FundController::class, 'deleteMy']);
+        Route::post('fund', [FundController::class, 'addMy']);
 
         Route::middleware('admin')->group(
             function () {
+                Route::post('news', [NewsController::class, 'create']);
+                Route::post('news/{id}', [NewsController::class, 'update']);
+                Route::delete('news/{id}', [NewsController::class, 'delete']);
+                Route::delete('news/comment/{id}', [NewsController::class, 'deleteComment']);
+
+                Route::post('article', [ArticleController::class, 'create']);
+                Route::post('article/{id}', [ArticleController::class, 'update']);
+                Route::delete('article/{id}', [ArticleController::class, 'delete']);
+                Route::delete('article/comment/{id}', [ArticleController::class, 'deleteComment']);
+
+                Route::delete('fund/{id}', [FundController::class, 'delete']);
+
+                Route::get('users', [UserController::class, 'indexAll']);
+                Route::get('user/block/{id}', [UserController::class, 'block']);
+
+                Route::delete('forum/{id}', [ForumController::class, 'delete']);
+                Route::post('forum', [ForumController::class, 'create']);
 
             }
         );
