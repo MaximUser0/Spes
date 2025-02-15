@@ -3,7 +3,7 @@ import magnifier from "../assets/img/magnifier.svg";
 import forumIcon from "../assets/img/forum-icon.svg";
 import example from "../assets/img/example-image.jpg";
 import { useNavigate } from "react-router-dom";
-export default function RightSideForumBlock() {
+export default function RightSideForumBlock({title}) {
     const [forums, setForums] = React.useState([{ title: "" }]);
     const [find, setFind] = React.useState("");
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ export default function RightSideForumBlock() {
     return (
         <div className="RightSideForumBlock">
             <div className="top">
-                <h2>Форум</h2>
+                <h2>{title}</h2>
                 <img
                     alt="Форум"
                     src={forumIcon}

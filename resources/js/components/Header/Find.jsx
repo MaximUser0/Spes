@@ -34,6 +34,16 @@ export default function Find() {
                                         ? elem.src
                                         : "../img/Example2.svg"
                                 }
+                                onClick={() => {
+                                    if (
+                                        elem.type == "user" &&
+                                        sessionStorage.getItem("token") != null
+                                    ) {
+                                        navigate("../profile/" + elem.id);
+                                        setFind("");
+                                        setResult([]);
+                                    }
+                                }}
                             />
                             <div>
                                 <h2>

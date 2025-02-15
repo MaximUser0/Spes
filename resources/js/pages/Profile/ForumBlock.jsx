@@ -19,7 +19,7 @@ export default function ForumBlock() {
                     array={forums}
                     type="forums"
                     texts={["Чат", "Сообщества", "Выйти из чата"]}
-                    functions={[goToChat, goToForums, addInFriends]}
+                    functions={[goToChat, goToForums, outFromForum]}
                     image={logout_icon}
                 />
             )}
@@ -40,6 +40,26 @@ export default function ForumBlock() {
     function goToChat(index) {
         navigate("../forum/" + forums[index].id);
     }
-    function goToForums(index) {}
-    function addInFriends(index) {}
+    function goToForums(index) {
+        navigate("../forums");
+    }
+    function outFromForum(index) {
+        if (sessionStorage.getItem("token") == null) return;
+        if (!window.confirm("Выйти из форума?")) return;
+        axios
+            .delete(
+                window.location.origin + "/api/forum/out/" + forums[index].id,
+                {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            )
+            .then(() => {
+                forums.splice(index, 1);
+                setForums([...forums]);
+            });
+    }
 }

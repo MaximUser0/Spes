@@ -201,7 +201,7 @@ header {
         .mobile-menu {
             display: block;
             margin: 3px 0 0 auto;
-            z-index: 3;
+            z-index: 5;
         }
         .mobile-nav-bar {
             position: absolute;
@@ -209,7 +209,7 @@ header {
             right: 0;
             width: 200px;
             height: auto;
-            z-index: 2;
+            z-index: 4;
             box-shadow: 0 0 8px var(--font);
             border-radius: 15px 0 15px 15px;
             background-color: var(--light);

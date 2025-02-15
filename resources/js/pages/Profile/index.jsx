@@ -39,7 +39,7 @@ export default function Profile({ setPanels }) {
             case 3:
             case 4:
             case 5:
-                setPanels([0, 1, 8, 9]);
+                setPanels([0, 1, 6, 8]);
                 break;
             default:
                 setPanels([0, 1]);

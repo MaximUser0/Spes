@@ -17,8 +17,9 @@ export default function Popup({ setPopup }) {
                 },
             })
             .then(() => {
+                setPopup(0);
                 dispatch(setToken(null));
-                dispatch(setUser(null));
+                dispatch(setUser({ is_admin: false }));
                 navigate("../");
             })
             .catch(() => {

@@ -31,10 +31,8 @@ import AdminArticles from "./pages/Admin/AdminArticles";
 import AdminArticlesEdit from "./pages/Admin/AdminArticles/Edit";
 import AdminArticlesAdd from "./pages/Admin/AdminArticles/Add";
 import AdminUsers from "./pages/Admin/AdminUsers";
-import FundsAndSharesBlock from "./components/FundsAndSharesBlock.jsx";
 import CreateFundBlock from "./components/CreateFundBlock.jsx";
 import ChatsBlock from "./components/ChatsBlock.jsx";
-import CommunitiesBlock from "./components/CommunitiesBlock.jsx";
 import FriendsBlock from "./components/FriendsBlock.jsx";
 import ProfileMenuSideBlock from "./components/ProfileMenuSideBlock.jsx";
 import EditProfile from "./pages/Profile/EditProfile.jsx";
@@ -52,7 +50,7 @@ export default function App() {
                 setSidePanels([0, 1, 2, 4]);
                 break;
             case "help":
-                setSidePanels([0, 1, 5, 6]);
+                setSidePanels([0, 1, 5, 2]);
                 break;
             case "map":
             case "forum":
@@ -95,7 +93,7 @@ export default function App() {
                     <Route
                         path="/map"
                         element={<Map />}
-                        onEnter={() => setSidePanels([1, 1, 0, 0, 1, 1])}
+                        onEnter={() => setSidePanels([0, 1])}
                     />
                     <Route
                         path="/help"
@@ -110,7 +108,7 @@ export default function App() {
                         element={<Profile setPanels={setSidePanels} />}
                     />
                     <Route path="/profile/edit" element={<EditProfile />} />
-                    <Route path="/profile/:id" element={<ProfileOfAnother />} />
+                    <Route path="/profile/:id" element={<ProfileOfAnother setPanels={setSidePanels}/>} />
                     <Route path="/sing-up" element={<SingUp />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/admin-panel" element={<AdminPanel />} />
@@ -147,25 +145,24 @@ export default function App() {
                     <Route path="/admin-panel/users" element={<AdminUsers />} />
                 </Routes>
                 <div className="rightSide">
-                    {sidePanels.indexOf(2) != -1 ? <RightSideForumBlock /> : ""}
+                    {sidePanels.indexOf(5) != -1 ? (
+                        <CreateFundBlock isMobile={false} />
+                    ) : (
+                        ""
+                    )}
+                    {sidePanels.indexOf(2) != -1 ? <RightSideForumBlock title="Форум"/> : ""}
                     {sidePanels.indexOf(3) != -1 ? <ChatsBlock /> : ""}
                     {sidePanels.indexOf(4) != -1 ? (
                         <RightSideCharitableBlock />
                     ) : (
                         ""
                     )}
-                    {sidePanels.indexOf(5) != -1 ? (
-                        <CreateFundBlock isMobile={false} />
-                    ) : (
-                        ""
-                    )}
-                    {sidePanels.indexOf(6) != -1 ? <FundsAndSharesBlock /> : ""}
-                    {sidePanels.indexOf(9) != -1 ? (
+                    {sidePanels.indexOf(6) != -1 ? (
                         <ProfileMenuSideBlock />
                     ) : (
                         ""
                     )}
-                    {sidePanels.indexOf(7) != -1 ? <CommunitiesBlock /> : ""}
+                    {sidePanels.indexOf(7) != -1 ? <RightSideForumBlock title="Сообщества"/> : ""}
                     {sidePanels.indexOf(8) != -1 ? <FriendsBlock /> : ""}
                 </div>
             </div>

@@ -28,7 +28,13 @@ export default function Feedback() {
                 <div className="checkbox">
                     <input type="checkbox" />
                     <label>Согласие на обработку персональных данных</label>
-                    <button>Отправить</button>
+                    <button
+                        onClick={() => {
+                            clearForm();
+                        }}
+                    >
+                        Отправить
+                    </button>
                 </div>
             </div>
             <div className="article">
@@ -45,15 +51,26 @@ export default function Feedback() {
                         деятельности. Но инвалидность - это не приговор. Жизнь
                         одинаково прекрасна для всех живущих на Земле. Многие из
                         нас этого не замечают и не умеют ценить, при любом
-                        пустяковом препятствии впадают в депрессию. <br/> Сегодня мы
-                        беседуем с очень красивой девушкой по имени Лариса...
+                        пустяковом препятствии впадают в депрессию. <br />{" "}
+                        Сегодня мы беседуем с очень красивой девушкой по имени
+                        Лариса...
                     </p>
                     <img alt="Изображение" src={image} />
                 </div>
                 <button>
-                    <Link to="../articles/1"><img alt="Перейти" src={arrow} /></Link>
+                    <Link to="../articles/1">
+                        <img alt="Перейти" src={arrow} />
+                    </Link>
                 </button>
             </div>
         </div>
     );
+    function clearForm() {
+        const block = document.querySelector(".Feedback .form");
+        block.children[1].value = "";
+        block.children[0].children[0].value = "";
+        block.children[0].children[1].value = "";
+        block.children[0].children[2].value = "";
+        document.querySelector(".Feedback .checkbox").children[0].checked = false;
+    }
 }

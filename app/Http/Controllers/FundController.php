@@ -11,7 +11,7 @@ class FundController extends Controller
     public function index()
     {
         $funds = Fund::join('users', 'users.id', '=', 'funds.owner_id')
-            ->select("title", "name AS owner", "funds.created_at AS date", 'funds.id')
+            ->select("title", "name AS owner", "funds.created_at AS date", 'funds.id', 'funds.image')
             ->get();
         return response()->json($funds, 200);
     }

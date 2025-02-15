@@ -1,12 +1,13 @@
 import React from "react";
 import { ProfileContext } from "../context/ProfileContext";
 import arrow_down from "../assets/img/arrow-down.svg";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function ProfileOfAnother() {
+export default function ProfileOfAnother({ setPanels }) {
     const { selectedMenu, setSelectedMenu } = React.useContext(ProfileContext);
     const [showMenu, setShowMenu] = React.useState(false);
-    const id = window.location.pathname.split("/")[2];
+    const location = useLocation();
+    const id = location.pathname.split("/")[2];
     const navigate = useNavigate();
     const [info, setInfo] = React.useState({
         name: "",
@@ -24,18 +25,23 @@ export default function ProfileOfAnother() {
         "Подписаться",
         "Добавить в друзья",
         "Отписаться",
-        "Удалить из друзей"
+        "Удалить из друзей",
     ];
     React.useEffect(() => {
         getAnotherUser();
         setSelectedMenu(0);
-    }, []);
+    }, [location]);
     return (
         <div className={"Profile"}>
             <div className="grayBlock"></div>
             <div className="content">
                 <div className="info">
-                    <img alt="Фотография пользователя" src={info.src == null ? "../img/Example2.svg" : info.src} />
+                    <img
+                        alt="Фотография пользователя"
+                        src={
+                            info.src == null ? "../img/Example2.svg" : info.src
+                        }
+                    />
                     <div>
                         <h2>{defaultValue(info.name)}</h2>
                         <p>{"@user_name"}</p>

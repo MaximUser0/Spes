@@ -53,6 +53,12 @@ class ForumController extends Controller
         $forum = ForumParticipant::create(['forum_id' => $request->forum_id, 'user_id' => auth()->user()->id]);
         return response()->json($forum, 201);
     }
+    public function outFrom($id)
+    {
+        $forum = ForumParticipant::where('forum_id', $id)->where('user_id', auth()->user()->id)->first();
+        $forum->delete();
+        return response()->json("", 204);
+    }
     public function create(Request $request)
     {
         $check = [

@@ -64,6 +64,7 @@ Route::middleware('auth:sanctum')->group(
         Route::get('forum/my', [ForumController::class, 'myForums']);
         Route::get('forum/{id}', [ForumController::class, 'show']);
         Route::post('forum/join', [ForumController::class, 'joinTo']);
+        Route::delete('forum/out/{id}', [ForumController::class, 'outFrom']);
         Route::patch('forum', [ForumController::class, 'update']);
 
         Route::get('fundMy', [FundController::class, 'showMy']);

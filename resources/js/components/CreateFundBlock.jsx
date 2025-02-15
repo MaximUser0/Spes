@@ -35,7 +35,6 @@ export default function CreateFundBlock({ isMobile }) {
             }
         >
             <h2>Мой фонд</h2>
-            {/*<input type="text" placeholder="Имя Фамилия" />*/}
             <select
                 defaultValue={type}
                 required
