@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 
 export default function LeftSideNavBar({ isMobile, setMobileMenu }) {
     const page = window.location.pathname.split("/", 2)[1];
-    const isUser = true;
     const navigate = useNavigate();
     const user = useSelector((state) => state.auth.user);
     function moveTo(href) {
@@ -20,7 +19,7 @@ export default function LeftSideNavBar({ isMobile, setMobileMenu }) {
     return (
         <>
             <div className="LeftSideNavBar">
-                {isMobile && isUser ? (
+                {isMobile && sessionStorage.getItem("token") != null ? (
                     <div
                         onClick={() => {
                             moveTo("/profile");
@@ -241,7 +240,7 @@ export default function LeftSideNavBar({ isMobile, setMobileMenu }) {
                 ) : (
                     ""
                 )}
-                {isMobile && !isUser ? (
+                {isMobile && sessionStorage.getItem("token") == null ? (
                     <div
                         onClick={() => {
                             moveTo("/sing-up");

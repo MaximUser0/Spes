@@ -47,10 +47,13 @@ Route::middleware('auth:sanctum')->group(
         Route::post('news/{id}/comment', [NewsController::class, 'addComment']);
 
         Route::get('friend', [FriendController::class, 'index']);
+        Route::get('friend/{id}', [FriendController::class, 'indexOfAnother']);
         Route::post('friend', [FriendController::class, 'create']);
         Route::delete('friend/{user_id}', [FriendController::class, 'delete']);
         Route::get('subscriber', [SubscriberController::class, 'index']);
         Route::get('subscriptions', [SubscriberController::class, 'indexMy']);
+        Route::get('subscriber/{user_id}', [SubscriberController::class, 'subscribersOfAnother']);
+        Route::get('subscriptions/{user_id}', [SubscriberController::class, 'subscriptionsOfAnother']);
         Route::delete('subscriber/{user_id}', [SubscriberController::class, 'delete']);
         Route::get('subscribe/{user_id}', [SubscriberController::class, 'subscribe']);
 
@@ -62,6 +65,7 @@ Route::middleware('auth:sanctum')->group(
         Route::patch('chat', [ChatController::class, 'update']);
 
         Route::get('forum/my', [ForumController::class, 'myForums']);
+        Route::get('forum/ofAnother/{id}', [ForumController::class, 'forumsOfAnother']);
         Route::get('forum/{id}', [ForumController::class, 'show']);
         Route::post('forum/join', [ForumController::class, 'joinTo']);
         Route::delete('forum/out/{id}', [ForumController::class, 'outFrom']);

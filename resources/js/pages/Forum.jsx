@@ -11,9 +11,7 @@ export default function Forum({ type }) {
     const [attachFile, setAttachFile] = React.useState(null);
     const [selected, setSelected] = React.useState(0);
     const [message, setMessage] = React.useState("");
-    const [forums, setForums] = React.useState([
-        { messages: "[]", name: "" },
-    ]);
+    const [forums, setForums] = React.useState([{ messages: "[]", name: "" }]);
     const [find, setFind] = React.useState("");
     const user = useSelector((state) => state.auth.user);
     React.useEffect(() => {
@@ -37,62 +35,75 @@ export default function Forum({ type }) {
                 </div>
             </div>
             <div className="title">
-                <button
-                    onClick={() => {
-                        setOpenMobileChat(false);
-                    }}
-                >
-                    <img src={arrow} alt="Назад" />
-                </button>
-                <img
-                    alt="Фото сообщества"
-                    src={
-                        forums[selected].src != null
-                            ? forums[selected].src
-                            : "../img/Example2.svg"
-                    }
-                />
-                <h2>{forums[selected].name}</h2>
+                {forums.length != 0 ? (
+                    <>
+                        <button
+                            onClick={() => {
+                                setOpenMobileChat(false);
+                            }}
+                        >
+                            <img src={arrow} alt="Назад" />
+                        </button>
+                        <img
+                            alt="Фото сообщества"
+                            src={
+                                forums[selected].src != null
+                                    ? forums[selected].src
+                                    : "../img/Example2.svg"
+                            }
+                        />
+                        <h2>{forums[selected].name}</h2>
+                    </>
+                ) : (
+                    <>
+                        <img alt="Фото сообщества" src="../img/Example2.svg" />
+                        <h2>Чатов нет</h2>
+                    </>
+                )}
             </div>
             <div className="list">
                 <div>
-                    {forums.map((value, index) => (
-                        <div
-                            key={"forum-in-list-" + index}
-                            onClick={() => {
-                                setOpenMobileChat(true);
-                                setSelected(index);
-                                setTimeout(() => {
-                                    document
-                                        .querySelector(".Forum .chat")
-                                        .scrollTo(0, 1000);
-                                }, 0);
-                                readChat(value.id);
-                            }}
-                            className={
-                                !value.name
-                                    .toLowerCase()
-                                    .includes(find.toLowerCase())
-                                    ? "hidden"
-                                    : ""
-                            }
-                        >
-                            <img alt="Фото сообщества" src={value.src} />
-                            <div className="text">
-                                <h3>{value.name}</h3>
-                                <p className="last">{lastMessage(index)}</p>
-                            </div>
-                            <div>
-                                <p className="time">{value.time}</p>
-                                {newMessages(index)}
-                            </div>
-                        </div>
-                    ))}
+                    {forums.length != 0
+                        ? forums.map((value, index) => (
+                              <div
+                                  key={"forum-in-list-" + index}
+                                  onClick={() => {
+                                      setOpenMobileChat(true);
+                                      setSelected(index);
+                                      setTimeout(() => {
+                                          document
+                                              .querySelector(".Forum .chat")
+                                              .scrollTo(0, 1000);
+                                      }, 0);
+                                      readChat(value.id);
+                                  }}
+                                  className={
+                                      !value.name
+                                          .toLowerCase()
+                                          .includes(find.toLowerCase())
+                                          ? "hidden"
+                                          : ""
+                                  }
+                              >
+                                  <img alt="Фото сообщества" src={value.src} />
+                                  <div className="text">
+                                      <h3>{value.name}</h3>
+                                      <p className="last">
+                                          {lastMessage(index)}
+                                      </p>
+                                  </div>
+                                  <div>
+                                      <p className="time">{value.time}</p>
+                                      {newMessages(index)}
+                                  </div>
+                              </div>
+                          ))
+                        : ""}
                 </div>
             </div>
             <div className="chat">
                 <div>
-                    {forums[selected].messages != null
+                    {forums.length != 0 && forums[selected].messages != null
                         ? JSON.parse(forums[selected].messages).map(
                               (message, index) => (
                                   <div
@@ -124,7 +135,9 @@ export default function Forum({ type }) {
                         alt="Прикрепить"
                         src={attach}
                         onClick={() => {
-                            document.getElementById("sent-file").click();
+                            if (forums.length != 0) {
+                                document.getElementById("sent-file").click();
+                            }
                         }}
                     />
                 ) : (
@@ -143,7 +156,7 @@ export default function Forum({ type }) {
                     type="text"
                     placeholder="Сообщение"
                     name="message"
-                    readOnly={attachFile != null}
+                    readOnly={attachFile != null || forums.length == 0}
                     value={message}
                     onChange={(e) => {
                         setMessage(e.target.value);

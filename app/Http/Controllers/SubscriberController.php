@@ -27,6 +27,25 @@ class SubscriberController extends Controller
             ->get();
         return response()->json($subscribers, 200);
     }
+
+    public function subscribersOfAnother($user_id)
+    {
+        $subscribers = Subscriber::where("user_id", $user_id)
+            ->join('users', 'users.id', '=', 'subscribers.user_id')
+            ->select('src', 'name', 'users.id AS user_id')
+            ->get();
+        return response()->json($subscribers, 200);
+    }
+
+    public function subscriptionsOfAnother($user_id)
+    {
+        $subscribers = Subscriber::where("subscriber_id", $user_id)
+            ->join('users', 'users.id', '=', 'subscribers.user_id')
+            ->select('src', 'name', 'users.id AS user_id')
+            ->get();
+        return response()->json($subscribers, 200);
+    }
+
     public function delete($user_id)
     {
         $friend = Subscriber::where("subscriber_id", auth()->user()->id)

@@ -28,6 +28,21 @@ class FriendController extends Controller
         return response()->json($friends, 200);
     }
 
+    public function indexOfAnother($id)
+    {
+        $friends = Friend::where("user_one_id", $id)
+            ->orWhere("user_two_id", $id)
+            ->get();
+        foreach ($friends as $key => $friend) {
+            $friend_id = $friend->user_one_id == $id ? $friend->user_two_id : $friend->user_one_id;
+            $friend_info = User::find($friend_id);
+            $friends[$key]->src = $friend_info->src;
+            $friends[$key]->name = $friend_info->name;
+            $friends[$key]->user_id = $friend_info->id;
+        }
+        return response()->json($friends, 200);
+    }
+
     public function create(Request $request)
     {
         $this->validate($request, ['user_id' => "required|exists:users,id"]);

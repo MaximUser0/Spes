@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+if(sessionStorage.getItem("token") == 'null'){
+    sessionStorage.setItem("token", null);
+}
+
 const initialState = {
     token: sessionStorage.getItem("token"),
     user: { name: "", src: "../img/Example2.svg" },

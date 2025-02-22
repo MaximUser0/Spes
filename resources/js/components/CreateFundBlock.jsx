@@ -42,6 +42,7 @@ export default function CreateFundBlock({ isMobile }) {
                 onChange={(e) => {
                     setType(e.target.value);
                 }}
+                disabled={sessionStorage.getItem("token") == null}
             >
                 <option value="" disabled hidden>
                     Категория
@@ -51,9 +52,13 @@ export default function CreateFundBlock({ isMobile }) {
                 <option value="Погашение долгов">Погашение долгов</option>
             </select>
             <p
-                onClick={() =>
-                    document.getElementById("add-image-for-new-fund").click()
-                }
+                onClick={() => {
+                    if (sessionStorage.getItem("token") != null) {
+                        document
+                            .getElementById("add-image-for-new-fund")
+                            .click();
+                    }
+                }}
                 className="fileInput"
             >
                 Добавить изображение

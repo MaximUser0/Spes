@@ -35,7 +35,7 @@ export default function ChatsBlock() {
                 />
             </div>
             <div className="list">
-                {chats[0].name == "" || chats.length == 0 ? (
+                {chats.length == 0 || chats[0].name == "" ? (
                     <p>Вы не состоите в чатах</p>
                 ) : (
                     filterItems(chats).map((value, index) => (

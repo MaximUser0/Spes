@@ -57,8 +57,7 @@ export default function Login() {
                     if (error.response.data == "You are blocked") {
                         setError({
                             input: 1,
-                            message:
-                                "Ваш аккаунт заблокирован!",
+                            message: "Ваш аккаунт заблокирован!",
                         });
                         return;
                     }
@@ -84,7 +83,14 @@ export default function Login() {
                     </Link>
                 </div>
             </div>
-            <div className="form">
+            <form
+                className="form"
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        LogIn();
+                    }
+                }}
+            >
                 <h1>Вход в аккаунт</h1>
                 <input
                     type="email"
@@ -106,7 +112,8 @@ export default function Login() {
                     />
                     <label>Согласие на обработку персональных данных</label>
                     <button
-                        onClick={() => {
+                        onClick={(e) => {
+                            e.preventDefault();
                             LogIn();
                         }}
                     >
@@ -121,7 +128,7 @@ export default function Login() {
                 <p className="already">
                     Нет аккаунта? <Link to="../sing-up">Регистрация</Link>
                 </p>
-            </div>
+            </form>
         </div>
     );
 }

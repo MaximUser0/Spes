@@ -22,6 +22,12 @@ export default function Find() {
                         findElements();
                     }
                 }}
+                readOnly={sessionStorage.getItem("token") == null}
+                title={
+                    sessionStorage.getItem("token") == null
+                        ? "Для поиска по сайту нужно войти в аккаунт"
+                        : ""
+                }
             />
             {result.length != 0 ? (
                 <div className="findResult">

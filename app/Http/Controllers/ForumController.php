@@ -25,6 +25,14 @@ class ForumController extends Controller
             ->get();
         return response()->json($forums, 200);
     }
+    public function forumsOfAnother($id)
+    {
+        $forums = ForumParticipant::where("user_id", $id)
+            ->join('forums', 'forums.id', '=', 'forum_participants.forum_id')
+            ->select('forums.id AS id', 'src', 'title AS name', 'description', 'messages')
+            ->get();
+        return response()->json($forums, 200);
+    }
     public function show($id)
     {
         $forum = Forum::find($id);
